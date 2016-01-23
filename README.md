@@ -79,10 +79,10 @@ pip install pytest-expecter
 This plugin's version number will follow `expecter`:
 
 ```
-M.N.P.postF
+X.Y.Z.postN
 ```
 
 where:
 
-- `M.N.P` is the version of `expecter` included in the plugin
-- `F` is incremented on each release of the plugin for that version
+- `X.Y.Z` is the version of `expecter` included in the plugin
+- `N` is incremented on each release of the plugin for that version
