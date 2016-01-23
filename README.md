@@ -2,6 +2,10 @@
 
 This is a fork of [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stack trace for `pytest`.
 
+[![Build Status](http://img.shields.io/travis/modustri/pytest-expecter/plugin.svg)](https://travis-ci.org/modustri/pytest-expecter)
+[![PyPI Version](http://img.shields.io/pypi/v/pytest-expecter.svg)](https://pypi.python.org/pypi/pytest-expecter)
+[![PyPI Downloads](http://img.shields.io/pypi/dm/pytest-expecter.svg)](https://pypi.python.org/pypi/pytest-expecter)
+
 ## Overview
 
 This lets you write tests (using [ropez/pytest-describe](https://github.com/ropez/pytest-describe)) like this:
