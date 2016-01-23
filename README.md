@@ -36,7 +36,7 @@ _________________________ describe_foobar.it_can_fail __________________________
 test_foobar.py:14:
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = expect(3), other = 4
+self = expect(5), other = 6
 
     def __eq__(self, other):
         msg = 'Expected %s but got %s' % (repr(other), repr(self._actual))
