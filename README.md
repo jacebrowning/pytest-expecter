@@ -1,4 +1,4 @@
-# pytest-describe
+# pytest-expecter
 
 This is a fork of [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stack trace for `pytest`.
 
