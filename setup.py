@@ -1,20 +1,23 @@
 from setuptools import setup
 
-setup(name='expecter',
-      version='0.2.2',
-      description='Expecter Gadget, a better expectation (assertion) library',
-      long_description=open('README.txt').read(),
-      author='Gary Bernhardt',
-      author_email='gary.bernhardt@gmail.com',
-      py_modules=['expecter'],
-      entry_points={
-        'pytest11': [
-            'pytest-expecter = expecter'
+setup(
+    name="pytest-expecter",
+    version='0.2.2-1',
+    description="A fork of 'expecter' with better support for pytest.",
+    long_description=open("README.md").read(),
+    author="Jace Browning",
+    author_email="jacebrowning@gmail.com",
+    py_modules=["expecter"],
+    entry_points={
+        "pytest11": [
+            "pytest-expecter = expecter"
         ],
-      },
-      url='https://github.com/garybernhardt/expecter',
-      license='BSD',
-      classifiers=['Development Status :: 3 - Alpha',
-                   'Topic :: Software Development :: Testing',
-                   'Intended Audience :: Developers']
-     )
+    },
+    url="https://github.com/modustri/pytest-expecter",
+    license="BSD",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Topic :: Software Development :: Testing",
+        "Intended Audience :: Developers",
+    ]
+)
