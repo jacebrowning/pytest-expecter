@@ -33,7 +33,7 @@ _________________________ describe_foobar.it_can_fail __________________________
     def it_can_fail():
 >       expect(2 + 3) == 6
 
-test_expecter.py:14:
+test_foobar.py:14:
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 self = expect(3), other = 4
@@ -64,7 +64,7 @@ _________________________ describe_foobar.it_can_fail __________________________
 >       expect(2 + 3) == 6
 E       AssertionError: Expected 6 but got 5
 
-test_expecter.py:14: AssertionError
+test_foobar.py:14: AssertionError
 ====================== 1 failed, 1 passed in 2.67 seconds ======================
 ```
 
