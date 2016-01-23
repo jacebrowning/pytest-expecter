@@ -1,5 +1,6 @@
 *.pyc
-/expecter.egg-info
+*.egg-info
+*.rst
 /build
 /dist
 /.tox
