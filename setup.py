@@ -7,6 +7,11 @@ setup(name='expecter',
       author='Gary Bernhardt',
       author_email='gary.bernhardt@gmail.com',
       py_modules=['expecter'],
+      entry_points={
+        'pytest11': [
+            'pytest-expecter = expecter'
+        ],
+      },
       url='https://github.com/garybernhardt/expecter',
       license='BSD',
       classifiers=['Development Status :: 3 - Alpha',

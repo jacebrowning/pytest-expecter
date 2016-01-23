@@ -258,5 +258,9 @@ def normalized_diff(other, actual):
     return '\n'.join(['\nDiff:'] + diff[2:])
 
 
+def pytest_configure(config):
+    os.environ['EXPECTER_HIDETRACEBACK'] = "true"
+
+
 def _hidetraceback():
     return os.getenv('EXPECTER_HIDETRACEBACK')
