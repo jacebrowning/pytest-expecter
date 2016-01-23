@@ -75,7 +75,7 @@ pip install pytest-expecter
 This plugin's version number will follow `expecter`:
 
 ```
-M.N.P-F
+M.N.P.postF
 ```
 
 where:
