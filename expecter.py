@@ -203,6 +203,7 @@ class _CustomExpectation:
         self._actual = actual
 
     def __call__(self, *args, **kwargs):
+        __tracebackhide__ = _hidetraceback()
         self.enforce(*args, **kwargs)
 
     def enforce(self, *args, **kwargs):
