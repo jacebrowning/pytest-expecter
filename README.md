@@ -4,7 +4,6 @@ This is a fork of [garybernhardt/expecter](https://github.com/garybernhardt/expe
 
 [![Build Status](http://img.shields.io/travis/jacebrowning/pytest-expecter/plugin.svg)](https://travis-ci.org/jacebrowning/pytest-expecter)
 [![PyPI Version](http://img.shields.io/pypi/v/pytest-expecter.svg)](https://pypi.python.org/pypi/pytest-expecter)
-[![PyPI Downloads](http://img.shields.io/pypi/dm/pytest-expecter.svg)](https://pypi.python.org/pypi/pytest-expecter)
 
 ## Overview
 
