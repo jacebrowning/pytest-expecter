@@ -123,7 +123,7 @@ class expect(object):
 
         if isinstance(self._actual, basestring) and '\n' in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to contain %s but didn't" % (
-                self._actual, repr(other))
+                self._actual.strip(), repr(other))
         else:
             msg = "Expected %s to contain %s but it didn't" % (
                 repr(self._actual), repr(other))
@@ -138,7 +138,7 @@ class expect(object):
 
         if isinstance(self._actual, basestring) and '\n' in self._actual:
             msg = "Given text:\n\n%s\n\nExpected not to contain %s but did" % (
-                self._actual, repr(other))
+                self._actual.strip(), repr(other))
         else:
             msg = "Expected %s not to contain %s but it did" % (
                 repr(self._actual), repr(other))
@@ -153,7 +153,7 @@ class expect(object):
 
         if isinstance(self._actual, basestring) and '\n' in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to exclude %s but didn't" % (
-                self._actual, repr(other))
+                self._actual.strip(), repr(other))
         else:
             msg = "Expected %s to exclude %s but it didn't" % (
                 repr(self._actual), repr(other))

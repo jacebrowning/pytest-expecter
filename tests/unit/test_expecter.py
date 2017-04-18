@@ -141,9 +141,9 @@ class describe_expecter:
             "Expected [1] to exclude 1 but it didn't")
 
     def it_optimizes_containment_message_for_multiline_strings(self):
-        expect("<p>\nHello, world!\n</p>").contains("Hello, world!")
+        expect("<p>\nHello, world!\n</p>\n").contains("Hello, world!")
         def _fails():
-            expect("<p>\nHello, world!\n</p>").contains("Foobar")
+            expect("<p>\nHello, world!\n</p>\n").contains("Foobar")
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
             "Given text:\n\n"
@@ -151,9 +151,9 @@ class describe_expecter:
             "Expected to contain 'Foobar' but didn't")
 
     def it_optimizes_non_containment_message_for_multiline_strings(self):
-        expect("<p>\nHello, world!\n</p>").does_not_contain("Foobar")
+        expect("<p>\nHello, world!\n</p>\n").does_not_contain("Foobar")
         def _fails():
-            expect("<p>\nHello, world!\n</p>").does_not_contain("Hello")
+            expect("<p>\nHello, world!\n</p>\n").does_not_contain("Hello")
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
             "Given text:\n\n"
@@ -161,9 +161,9 @@ class describe_expecter:
             "Expected not to contain 'Hello' but did")
 
     def it_optimizes_exclusion_message_for_multiline_strings(self):
-        expect("<p>\nHello, world!\n</p>").excludes("Foobar")
+        expect("<p>\nHello, world!\n</p>\n").excludes("Foobar")
         def _fails():
-            expect("<p>\nHello, world!\n</p>").excludes("Hello")
+            expect("<p>\nHello, world!\n</p>\n").excludes("Hello")
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
             "Given text:\n\n"
