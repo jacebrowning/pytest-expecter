@@ -131,3 +131,23 @@ class describe_expecter:
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
             "Expected [1] to not contain 1 but it did")
+
+    def it_optimizes_containment_message_for_multiline_strings(self):
+        expect("<p>\nHello, world!\n</p>").contains("Hello, world!")
+        def _fails():
+            expect("<p>\nHello, world!\n</p>").contains("Foobar")
+        assert_raises(AssertionError, _fails)
+        assert fail_msg(_fails) == (
+            "Expected content:\n\n"
+            "<p>\nHello, world!\n</p>\n\n"
+            "to contain 'Foobar' but it didn't")
+
+    def it_optimizes_non_containment_message_for_multiline_strings(self):
+        expect("<p>\nHello, world!\n</p>").does_not_contain("Foobar")
+        def _fails():
+            expect("<p>\nHello, world!\n</p>").does_not_contain("Hello")
+        assert_raises(AssertionError, _fails)
+        assert fail_msg(_fails) == (
+            "Expected content:\n\n"
+            "<p>\nHello, world!\n</p>\n\n"
+            "to not contain 'Hello' but it did")
