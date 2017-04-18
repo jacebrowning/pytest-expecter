@@ -113,18 +113,30 @@ class expect(object):
         Ensure that ``other`` is in the actual value (like ``assert other in actual``).
         """
         __tracebackhide__ = _hidetraceback()
-        assert other in self._actual, (
-            "Expected %s to contain %s but it didn't" % (
-                repr(self._actual), repr(other)))
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Expected content:\n\n%s\n\nto contain %s but it didn't" % (
+                self._actual, repr(other))
+        else:
+            msg = "Expected %s to contain %s but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert other in self._actual, msg
 
     def does_not_contain(self, other):
         """
         Opposite of ``contains``
         """
         __tracebackhide__ = _hidetraceback()
-        assert other not in self._actual, (
-            "Expected %s to not contain %s but it did" % (
-                repr(self._actual), repr(other)))
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Expected content:\n\n%s\n\nto not contain %s but it did" % (
+                self._actual, repr(other))
+        else:
+            msg = "Expected %s to not contain %s but it did" % (
+                repr(self._actual), repr(other))
+
+        assert other not in self._actual, msg
 
     @staticmethod
     def raises(expected_cls=Exception, message=None):
