@@ -8,7 +8,7 @@ except IOError:
 
 setup(
     name="pytest-expecter",
-    version='0.2.2.post4',
+    version='0.2.2.post5',
     description="A fork of 'expecter' with better support for pytest.",
     long_description=README,
     author="Jace Browning",

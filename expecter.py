@@ -1,3 +1,10 @@
+"""
+Because this module already takes care of formatting assertions, we want to
+disable this behavior in py.test by including this keyword in the docstring:
+
+PYTEST_DONT_REWRITE
+"""
+
 __all__ = ['expect']
 import os
 import difflib
@@ -115,7 +122,7 @@ class expect(object):
         __tracebackhide__ = _hidetraceback()
 
         if isinstance(self._actual, basestring) and '\n' in self._actual:
-            msg = "Expected content:\n\n%s\n\nto contain %s but it didn't" % (
+            msg = "Given text:\n\n%s\n\nExpected to contain %s but didn't" % (
                 self._actual, repr(other))
         else:
             msg = "Expected %s to contain %s but it didn't" % (
@@ -130,10 +137,25 @@ class expect(object):
         __tracebackhide__ = _hidetraceback()
 
         if isinstance(self._actual, basestring) and '\n' in self._actual:
-            msg = "Expected content:\n\n%s\n\nto not contain %s but it did" % (
+            msg = "Given text:\n\n%s\n\nExpected not to contain %s but did" % (
                 self._actual, repr(other))
         else:
-            msg = "Expected %s to not contain %s but it did" % (
+            msg = "Expected %s not to contain %s but it did" % (
+                repr(self._actual), repr(other))
+
+        assert other not in self._actual, msg
+
+    def excludes(self, other):
+        """
+        Opposite of ``contains`` with alternate phrasing.
+        """
+        __tracebackhide__ = _hidetraceback()
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to exclude %s but didn't" % (
+                self._actual, repr(other))
+        else:
+            msg = "Expected %s to exclude %s but it didn't" % (
                 repr(self._actual), repr(other))
 
         assert other not in self._actual, msg

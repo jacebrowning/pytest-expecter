@@ -130,7 +130,15 @@ class describe_expecter:
             expect([1]).does_not_contain(1)
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
-            "Expected [1] to not contain 1 but it did")
+            "Expected [1] not to contain 1 but it did")
+
+    def it_expects_exclusion(self):
+        expect([1]).excludes(0)
+        def _fails():
+            expect([1]).excludes(1)
+        assert_raises(AssertionError, _fails)
+        assert fail_msg(_fails) == (
+            "Expected [1] to exclude 1 but it didn't")
 
     def it_optimizes_containment_message_for_multiline_strings(self):
         expect("<p>\nHello, world!\n</p>").contains("Hello, world!")
@@ -138,9 +146,9 @@ class describe_expecter:
             expect("<p>\nHello, world!\n</p>").contains("Foobar")
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
-            "Expected content:\n\n"
+            "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
-            "to contain 'Foobar' but it didn't")
+            "Expected to contain 'Foobar' but didn't")
 
     def it_optimizes_non_containment_message_for_multiline_strings(self):
         expect("<p>\nHello, world!\n</p>").does_not_contain("Foobar")
@@ -148,6 +156,16 @@ class describe_expecter:
             expect("<p>\nHello, world!\n</p>").does_not_contain("Hello")
         assert_raises(AssertionError, _fails)
         assert fail_msg(_fails) == (
-            "Expected content:\n\n"
+            "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
-            "to not contain 'Hello' but it did")
+            "Expected not to contain 'Hello' but did")
+
+    def it_optimizes_exclusion_message_for_multiline_strings(self):
+        expect("<p>\nHello, world!\n</p>").excludes("Foobar")
+        def _fails():
+            expect("<p>\nHello, world!\n</p>").excludes("Hello")
+        assert_raises(AssertionError, _fails)
+        assert fail_msg(_fails) == (
+            "Given text:\n\n"
+            "<p>\nHello, world!\n</p>\n\n"
+            "Expected to exclude 'Hello' but didn't")
