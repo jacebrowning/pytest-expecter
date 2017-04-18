@@ -8,7 +8,7 @@ except IOError:
 
 setup(
     name="pytest-expecter",
-    version='0.2.2.post3',
+    version='0.2.2.post4',
     description="A fork of 'expecter' with better support for pytest.",
     long_description=README,
     author="Jace Browning",
@@ -19,11 +19,19 @@ setup(
             "pytest-expecter = expecter"
         ],
     },
-    url="https://github.com/modustri/pytest-expecter",
+    url="https://github.com/jacebrowning/pytest-expecter",
     license="BSD",
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Topic :: Software Development :: Testing",
+        "Development Status :: 4 - Beta",
+        "Environment :: Plugins",
+        "Framework :: Pytest",
         "Intended Audience :: Developers",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Topic :: Software Development :: Testing",
     ]
 )
