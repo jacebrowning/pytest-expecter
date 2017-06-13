@@ -5,7 +5,6 @@ disable this behavior in py.test by including this keyword in the docstring:
 PYTEST_DONT_REWRITE
 """
 
-__all__ = ['expect']
 import os
 import sys
 import difflib
@@ -16,6 +15,11 @@ try:
     import builtins as __builtins__
 except ImportError:
     import __builtin__ as __builtins__
+
+
+__project__ = 'expecter'
+__version__ = 'TBD'
+__all__ = ['expect']
 
 
 basestring = getattr(__builtins__, 'basestring', str)

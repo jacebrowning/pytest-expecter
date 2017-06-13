@@ -3,23 +3,25 @@ from __future__ import with_statement
 import sys
 from collections import OrderedDict
 
-from nose import SkipTest
-from nose.tools import assert_raises
+import pytest
 
-from tests.util import fail_msg
 from expecter import expect
+from tests.utils import fail_msg
 
 
-class describe_expecter:
-    def it_expects_equals(self):
+def describe_expecter():
+
+    def it_expects_equals():
         expect(2) == 1 + 1
         def _fails(): expect(1) == 2
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == 'Expected 2 but got 1'
 
-    def it_shows_diff_when_strings_differ(self):
+    def it_shows_diff_when_strings_differ():
         def _fails(): expect('foo\nbar') == 'foo\nbaz'
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == ("Expected 'foo\\nbaz' but got 'foo\\nbar'\n"
                "Diff:\n"
                "@@ -1,2 +1,2 @@\n"
@@ -28,11 +30,12 @@ class describe_expecter:
                "+bar"
                ), fail_msg(_fails)
 
-    def it_shows_diff_for_large_reprs(self):
+    def it_shows_diff_for_large_reprs():
         sequence = list(range(1000, 1050))
         big_list = sequence[:20] + [1019] + sequence[20:]
         def _fails(): expect(big_list) == sequence
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == ("Expected {0} but got {1}\n"
                "Diff:\n"
                "@@ -17,6 +17,7 @@\n"
@@ -45,14 +48,15 @@ class describe_expecter:
                "  1021,"
                ).format(repr(sequence), repr(big_list)), fail_msg(_fails)
 
-    def it_shows_optimized_diff_for_ordereddict_on_python36(self):
-        if sys.version < '3.6':
-            raise SkipTest("Only valid on Python 3.6+")
+    @pytest.mark.skipif(sys.version < '3.6',
+                        reason="Only valid on Python 3.6+")
+    def it_shows_optimized_diff_for_ordereddict_on_python36():
         actual = [OrderedDict(a=1, b=2, c=3, d=4, e=5, f=6)]
         expected = [dict(a=1, b=22, c=3, d=4, f=6, g=7)]
         expect.MIN_DIFF_SIZE = 10
         def _fails(): expect(actual) == expected
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected "
             "[{'a': 1, 'b': 22, 'c': 3, 'd': 4, 'f': 6, 'g': 7}] but got "
@@ -63,50 +67,56 @@ class describe_expecter:
             "+[{'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}]"
         ), fail_msg(_fails)
 
-    def it_can_compare_bytes(self):
+    def it_can_compare_bytes():
         null = bytes((0,))
         expect(null) == null
         data = bytes(range(9, 32))
         def _fails():
             expect(data) == data + null
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
 
-    def it_expects_not_equals(self):
+    def it_expects_not_equals():
         expect(1) != 2
         def _fails(): expect(1) != 1
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == 'Expected anything except 1 but got it'
 
-    def it_expects_less_than(self):
+    def it_expects_less_than():
         expect(1) < 2
         def _fails(): expect(1) < 0
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == 'Expected something less than 0 but got 1'
 
-    def it_expects_greater_than(self):
+    def it_expects_greater_than():
         expect(2) > 1
         def _fails(): expect(0) > 1
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             'Expected something greater than 1 but got 0')
 
-    def it_expects_less_than_or_equal(self):
+    def it_expects_less_than_or_equal():
         expect(1) <= 1
         expect(1) <= 2
         def _fails(): expect(2) <= 1
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             'Expected something less than or equal to 1 but got 2')
 
-    def it_expects_greater_than_or_equal(self):
+    def it_expects_greater_than_or_equal():
         expect(1) >= 1
         expect(2) >= 1
         def _fails(): expect(1) >= 2
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             'Expected something greater than or equal to 2 but got 1')
 
-    def it_can_chain_comparison_expectations(self):
+    def it_can_chain_comparison_expectations():
         # In each of these chains, the first expectation passes and the second
         # fails. This forces the first expectation to return self.
         failing_chains = [lambda: 1 == expect(1) != 1,
@@ -116,77 +126,82 @@ class describe_expecter:
                           lambda: 1 <= expect(1) != 1,
                           lambda: 1 >= expect(1) != 1]
         for chain in failing_chains:
-            assert_raises(AssertionError, chain)
+            with pytest.raises(AssertionError):
+                chain()
 
-        # Mote bug: if we leave the lambda in a local variable, it will try to
-        # run it as a spec.
-        del chain
-
-    def it_expects_isinstance(self):
+    def it_expects_isinstance():
         expect(1).isinstance(int)
         def _fails():
             expect(1).isinstance(str)
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             'Expected an instance of str but got an instance of int')
 
-    def it_expects_isinstance_for_multiple_types(self):
+    def it_expects_isinstance_for_multiple_types():
         expect('str').isinstance((str, bytes))
         def _fails():
             expect('str').isinstance((int, tuple))
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             'Expected an instance of int or tuple but got an instance of str')
 
-    def it_expects_containment(self):
+    def it_expects_containment():
         expect([1]).contains(1)
         def _fails():
             expect([2]).contains(1)
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected [2] to contain 1 but it didn't")
 
-    def it_expects_non_containment(self):
+    def it_expects_non_containment():
         expect([1]).does_not_contain(0)
         def _fails():
             expect([1]).does_not_contain(1)
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected [1] not to contain 1 but it did")
 
-    def it_expects_exclusion(self):
+    def it_expects_exclusion():
         expect([1]).excludes(0)
         def _fails():
             expect([1]).excludes(1)
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected [1] to exclude 1 but it didn't")
 
-    def it_optimizes_containment_message_for_multiline_strings(self):
+    def it_optimizes_containment_message_for_multiline_strings():
         expect("<p>\nHello, world!\n</p>\n").contains("Hello, world!")
         def _fails():
             expect("<p>\nHello, world!\n</p>\n").contains("Foobar")
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
             "Expected to contain 'Foobar' but didn't")
 
-    def it_optimizes_non_containment_message_for_multiline_strings(self):
+    def it_optimizes_non_containment_message_for_multiline_strings():
         expect("<p>\nHello, world!\n</p>\n").does_not_contain("Foobar")
         def _fails():
             expect("<p>\nHello, world!\n</p>\n").does_not_contain("Hello")
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
             "Expected not to contain 'Hello' but did")
 
-    def it_optimizes_exclusion_message_for_multiline_strings(self):
+    def it_optimizes_exclusion_message_for_multiline_strings():
         expect("<p>\nHello, world!\n</p>\n").excludes("Foobar")
         def _fails():
             expect("<p>\nHello, world!\n</p>\n").excludes("Hello")
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
