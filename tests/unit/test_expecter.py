@@ -1,6 +1,10 @@
 from __future__ import with_statement
-from nose.tools import assert_raises
+
 import sys
+from collections import OrderedDict
+
+from nose import SkipTest
+from nose.tools import assert_raises
 
 from tests.util import fail_msg
 from expecter import expect
@@ -40,6 +44,24 @@ class describe_expecter:
                "  1020,\n"
                "  1021,"
                ).format(repr(sequence), repr(big_list)), fail_msg(_fails)
+
+    def it_shows_optimized_diff_for_ordereddict_on_python36(self):
+        if sys.version < '3.6':
+            raise SkipTest("Only valid on Python 3.6+")
+        actual = [OrderedDict(a=1, b=2, c=3, d=4, e=5, f=6)]
+        expected = [dict(a=1, b=22, c=3, d=4, f=6, g=7)]
+        expect.MIN_DIFF_SIZE = 10
+        def _fails(): expect(actual) == expected
+        assert_raises(AssertionError, _fails)
+        assert fail_msg(_fails) == (
+            "Expected "
+            "[{'a': 1, 'b': 22, 'c': 3, 'd': 4, 'f': 6, 'g': 7}] but got "
+            "[{'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}]\n"
+            "Diff:\n"
+            "@@ -1 +1 @@\n"
+            "-[{'a': 1, 'b': 22, 'c': 3, 'd': 4, 'f': 6, 'g': 7}]\n"
+            "+[{'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}]"
+        ), fail_msg(_fails)
 
     def it_can_compare_bytes(self):
         null = bytes((0,))

@@ -7,8 +7,10 @@ PYTEST_DONT_REWRITE
 
 __all__ = ['expect']
 import os
+import sys
 import difflib
 import pprint
+from collections import OrderedDict
 
 try:
     import builtins as __builtins__
@@ -41,8 +43,11 @@ class expect(object):
     There are other, non-binary expectations available. They're documented
     below.
     """
+
+    MIN_DIFF_SIZE = 74
+
     def __init__(self, actual):
-        self._actual = actual
+        self._actual = normalize(actual)
 
     def __getattr__(self, name):
         is_custom_expectation = name in _custom_expectations
@@ -58,7 +63,7 @@ class expect(object):
         if (isinstance(other, basestring) and
                 isinstance(self._actual, basestring)):
             msg += normalized_diff(other, self._actual)
-        elif len(repr(self._actual)) > 74:
+        elif len(repr(self._actual)) > self.MIN_DIFF_SIZE:
             msg += normalized_diff(pprint.pformat(other),
                                    pprint.pformat(self._actual))
         assert self._actual == other, msg
@@ -283,6 +288,16 @@ def add_expectation(predicate):
 def clear_expectations():
     """Remove all custom expectations"""
     _custom_expectations.clear()
+
+
+def normalize(value):
+    """Convert equivalent types for better diffs."""
+    if isinstance(value, list):
+        return [normalize(item) for item in value]
+    elif isinstance(value, OrderedDict) and sys.version >= '3.6.':
+        return {k: normalize(v) for k, v in value.items()}
+    else:
+        return value
 
 
 def normalized_diff(other, actual):
