@@ -1,3 +1,5 @@
+# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
+
 from nose.tools import assert_raises
 
 from expecter import expect

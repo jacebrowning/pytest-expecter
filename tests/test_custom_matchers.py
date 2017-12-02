@@ -1,3 +1,5 @@
+# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation,unused-argument
+
 import pytest
 
 from expecter import expect, add_expectation, clear_expectations

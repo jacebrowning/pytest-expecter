@@ -1,3 +1,5 @@
+# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
+
 from __future__ import with_statement
 
 import sys

@@ -1,4 +1,5 @@
-# vim: set fileencoding=utf-8 :
+# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
+
 
 from __future__ import unicode_literals
 
@@ -13,6 +14,7 @@ except ImportError:
     import __builtin__ as __builtins__
 
 unicode = getattr(__builtins__, 'unicode', str)
+
 
 def describe_expecter():
 
@@ -32,6 +34,6 @@ def describe_expecter():
                "+ueber\n"
                " geek"
                )
-        #normalize real msg for differences in py2 and py3
+        # Normalize real msg for differences in py2 and py3
         real = fail_msg(_fails).replace("u'", "'").replace('\\xfc', '\xfc')
         assert real == msg, '\n' + repr(real) + '\n' + repr(msg)
