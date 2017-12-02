@@ -22,7 +22,7 @@ __version__ = 'TBD'
 __all__ = ['expect']
 
 
-basestring = getattr(__builtins__, 'basestring', str)
+basestring = getattr(__builtins__, 'basestring', str)  # pylint: disable=redefined-builtin
 
 
 class expect(object):
@@ -190,7 +190,7 @@ class expect(object):
         return _RaisesExpectation(expected_cls, message)
 
 
-class _RaisesExpectation:
+class _RaisesExpectation(object):
     """
     Internal context decorator created when you do:
         with expect.raises(SomeError):
@@ -230,7 +230,7 @@ class _RaisesExpectation:
             pass
 
 
-class _CustomExpectation:
+class _CustomExpectation(object):
     """
     Internal class representing a single custom expectation. Don't create these
     directly; use `expecter.add_expectation` instead.
