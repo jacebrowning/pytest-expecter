@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
 
 
