@@ -54,7 +54,6 @@ env/lib/python3.5/site-packages/expecter.py:57: AssertionError
 
 getting output like this:
 
-
 ```sh
 =================================== FAILURES ===================================
 _________________________ describe_foobar.it_can_fail __________________________
@@ -72,16 +71,3 @@ test_foobar.py:14: AssertionError
 ```sh
 pip install pytest-expecter
 ```
-
-## Versioning
-
-This plugin's version number will follow `expecter`:
-
-```
-X.Y.Z.postN
-```
-
-where:
-
-- `X.Y.Z` is the version of `expecter` included in the plugin
-- `N` is incremented on each release of the plugin for that version
