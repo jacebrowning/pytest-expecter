@@ -51,7 +51,8 @@ setuptools.setup(
     author='Jace Browning',
     author_email='jacebrowning@gmail.com',
 
-    py_modules=['expecter'],
+    packages=setuptools.find_packages(),
+
     entry_points={
         'pytest11': [
             'pytest-expecter = expecter'
