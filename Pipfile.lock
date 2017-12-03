@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0bcea736758dbd7b48449995ff1deeb0dfebd3dc7df8089956cb4df227b1b308"
+            "sha256": "9022dfe4f3d400eb9ae972c67c7fbeb2069b498606ba51944a7b80e73bc2410a"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -12,12 +12,14 @@
             "platform_release": "17.2.0",
             "platform_system": "Darwin",
             "platform_version": "Darwin Kernel Version 17.2.0: Fri Sep 29 18:27:05 PDT 2017; root:xnu-4570.20.62~3/RELEASE_X86_64",
-            "python_full_version": "2.7.12",
+            "python_full_version": "2.7.13",
             "python_version": "2.7",
             "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "2.7"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -153,10 +155,10 @@
         },
         "dis3": {
             "hashes": [
-                "sha256:d333e2bf803a4b0e240278df2ce749108ad4eb1242d49e8985337a1a8393236f",
-                "sha256:ee9f71e1a0c01a3ba742a36be91147948db99da3ee29094dccb48857c54608ef"
+                "sha256:675fec228b7d7258c5f2ae527dd7d9e6799b86f5066e76d89ac3ef5455f4266c",
+                "sha256:b98e5a9e3d8df54396219c0093fed1454416cec2b74ec15dc63e6a72b3bab94a"
             ],
-            "version": "==0.1.1"
+            "version": "==0.1.2"
         },
         "docopt": {
             "hashes": [
