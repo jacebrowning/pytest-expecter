@@ -61,7 +61,7 @@ setuptools.setup(
     long_description=build_description(),
     license='BSD',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
         'Framework :: Pytest',
         'Intended Audience :: Developers',

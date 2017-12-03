@@ -48,6 +48,7 @@ install: $(DEPENDENCIES) $(METADATA)
 
 $(DEPENDENCIES):
 	pipenv install --dev
+	- pipenv run pip install MacFSEvents
 	@ touch $@
 
 $(METADATA): setup.py
@@ -131,7 +132,7 @@ MKDOCS := pipenv run mkdocs
 MKDOCS_INDEX := site/index.html
 
 .PHONY: doc
-doc: uml ## Generate documentation
+doc: uml mkdocs ## Generate documentation
 
 .PHONY: uml
 uml: install docs/*.png
