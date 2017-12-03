@@ -1,29 +1,34 @@
-from nose.tools import assert_raises
+# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation,unused-argument
 
-from tests.util import fail_msg
+import pytest
+
 from expecter import expect, add_expectation, clear_expectations
+from tests.utils import fail_msg
 
 
-class describe_custom_matchers:
-    def is_a_potato(self, thing):
-        return thing == 'potato'
+def is_a_potato(thing):
+    return thing == 'potato'
 
-    def teardown(self):
+
+def describe_custom_matchers():
+
+    def teardown():
         clear_expectations()
 
-    def they_can_succeed(self):
-        add_expectation(self.is_a_potato)
+    def they_can_succeed():
+        add_expectation(is_a_potato)
         expect('potato').is_a_potato()
 
-    def they_can_fail(self):
-        add_expectation(self.is_a_potato)
+    def they_can_fail():
+        add_expectation(is_a_potato)
         def _fails():
             expect('not a potato').is_a_potato()
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected that 'not a potato' is_a_potato, but it isn't")
 
-    def they_adjust_failure_message_for_expectation_name(self):
+    def they_adjust_failure_message_for_expectation_name():
         def can_do_something(thing): return False
         def will_do_something(thing): return False
 
@@ -35,23 +40,24 @@ class describe_custom_matchers:
         assert fail_msg(expect('walrus').will_do_something) == (
             "Expected that 'walrus' will_do_something, but it won't")
 
-    def they_have_default_failure_message(self):
+    def they_have_default_failure_message():
         def predicate_with_bad_name(thing): return False
         add_expectation(predicate_with_bad_name)
         assert fail_msg(expect('walrus').predicate_with_bad_name) == (
             "Expected that 'walrus' predicate_with_bad_name, but got False")
 
-    def they_can_be_cleared(self):
+    def they_can_be_cleared():
         clear_expectations()
-        assert_raises(AttributeError, lambda: expect('potato').is_a_potato)
+        with pytest.raises(AttributeError):
+            expect('potato').is_a_potato
 
-    def they_can_have_postional_arguments(self):
+    def they_can_have_postional_arguments():
         def is_a(thing, vegetable):
             return thing == vegetable
         add_expectation(is_a)
         expect('potato').is_a('potato')
 
-    def they_can_have_keyword_arguments(self):
+    def they_can_have_keyword_arguments():
         def is_a(thing, vegetable):
             return thing == vegetable
         add_expectation(is_a)
