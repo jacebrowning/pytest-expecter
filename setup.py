@@ -46,7 +46,7 @@ setuptools.setup(
     name=read_package_variable('__project__'),
     version=read_package_variable('__version__'),
 
-    description="A fork of 'expecter' with better support for pytest.",
+    description="Better testing with expecter and pytest.",
     url='https://github.com/jacebrowning/pytest-expecter',
     author='Jace Browning',
     author_email='jacebrowning@gmail.com',
