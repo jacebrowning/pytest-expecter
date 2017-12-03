@@ -17,7 +17,7 @@ except ImportError:
     import __builtin__ as __builtins__
 
 
-__project__ = 'expecter'
+__project__ = 'pytest-expecter'
 __version__ = '1.0'
 __all__ = ['expect']
 
