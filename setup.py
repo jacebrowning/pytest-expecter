@@ -57,7 +57,7 @@ setuptools.setup(
 
     entry_points={
         'pytest11': [
-            'pytest-expecter = expecter'
+            'pytest-expecter = expecter.plugin'
         ],
     },
 
