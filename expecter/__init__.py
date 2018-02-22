@@ -20,7 +20,7 @@ import pytest
 
 
 __project__ = 'pytest-expecter'
-__version__ = '1.1b2'
+__version__ = '1.1'
 __all__ = ['expect']
 
 
