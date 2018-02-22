@@ -16,14 +16,13 @@ pycodestyle = "*"
 pydocstyle = "*"
 
 # Testing
-pytest = "< 3.3"
-pytest-describe = "==0.11.0"
-pytest-cov = "*"
+pytest = "~= 3.3"
+pytest-describe = "*"
 pytest-random = "*"
+pytest-cov = "*"
 
-# Coverage
-coverage = "*"
-"coverage.space" = "~=0.8"
+# Reports
+"coverage.space" = "*"
 
 # Documentation
 mkdocs = "*"
@@ -39,3 +38,5 @@ twine = "*"
 
 # Tooling
 sniffer = "*"
+pync = {version = "*", sys_platform = "== 'darwin'"}
+MacFSEvents = {version = "*", sys_platform = "== 'darwin'"}
