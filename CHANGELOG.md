@@ -1,5 +1,9 @@
 # Revision History
 
+## 1.1 (unreleased)
+
+- Add `expect` fixture to use directly in tests.
+
 ## 1.0 (2017/12/03)
 
 - Initial stable release.

@@ -1,5 +1,5 @@
 """
-Because this module already takes care of formatting assertions, we want to
+Because this package already takes care of formatting assertions, we want to
 disable this behavior in py.test by including this keyword in the docstring:
 
 PYTEST_DONT_REWRITE
@@ -16,9 +16,11 @@ try:
 except ImportError:
     import __builtin__ as __builtins__
 
+import pytest
+
 
 __project__ = 'pytest-expecter'
-__version__ = '1.0.post1'
+__version__ = '1.1b1'
 __all__ = ['expect']
 
 
@@ -226,8 +228,8 @@ class _RaisesExpectation(object):
                  str(exc_value)))
         elif issubclass(exc_type, self._exception_class):
             return True
-        else:
-            pass
+
+        return None
 
 
 class _CustomExpectation(object):
@@ -309,10 +311,6 @@ def normalized_diff(other, actual):
                                 lineterm='')
     diff = list(diff)
     return '\n'.join(['\nDiff:'] + diff[2:])
-
-
-def pytest_configure(config):  # pylint: disable=unused-argument
-    os.environ['EXPECTER_HIDETRACEBACK'] = "true"
 
 
 def _hidetraceback():

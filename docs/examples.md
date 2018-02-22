@@ -1,7 +1,3 @@
-```python
-from expecter import expect
-```
-
 # Equality
 
 ```python
