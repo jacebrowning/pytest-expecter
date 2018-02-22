@@ -1,10 +1,14 @@
-You can use either import the function:
+# Import
+
+The `expect` utility can be imported as normal:
 
 ```python
 from expecter import expect
 ```
 
-Or use the fixture:
+# Fixture
+
+A `pytest` fixture is also available:
 
 ```python
 def test_foobar(expect):
