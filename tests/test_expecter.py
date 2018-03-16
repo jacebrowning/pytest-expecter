@@ -131,7 +131,7 @@ def describe_expecter():
             with pytest.raises(AssertionError):
                 chain()
 
-    def it_expects_isinstance():
+    def it_can_expect_instance():
         expect(1).isinstance(int)
         def _fails():
             expect(1).isinstance(str)
@@ -140,7 +140,7 @@ def describe_expecter():
         assert fail_msg(_fails) == (
             'Expected an instance of str but got an instance of int')
 
-    def it_expects_isinstance_for_multiple_types():
+    def it_can_expect_instance_for_multiple_types():
         expect('str').isinstance((str, bytes))
         def _fails():
             expect('str').isinstance((int, tuple))
@@ -149,7 +149,7 @@ def describe_expecter():
         assert fail_msg(_fails) == (
             'Expected an instance of int or tuple but got an instance of str')
 
-    def it_expects_containment():
+    def it_can_expect_containment():
         expect([1]).contains(1)
         def _fails():
             expect([2]).contains(1)
@@ -158,7 +158,10 @@ def describe_expecter():
         assert fail_msg(_fails) == (
             "Expected [2] to contain 1 but it didn't")
 
-    def it_expects_non_containment():
+    def it_can_expect_containment_ignoring_case():
+        expect("fooBar").icontains("FooBAR")
+
+    def it_can_expect_non_containment():
         expect([1]).does_not_contain(0)
         def _fails():
             expect([1]).does_not_contain(1)
@@ -167,7 +170,7 @@ def describe_expecter():
         assert fail_msg(_fails) == (
             "Expected [1] not to contain 1 but it did")
 
-    def it_expects_exclusion():
+    def it_can_expect_exclusion():
         expect([1]).excludes(0)
         def _fails():
             expect([1]).excludes(1)

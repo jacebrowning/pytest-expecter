@@ -20,7 +20,7 @@ import pytest
 
 
 __project__ = 'pytest-expecter'
-__version__ = '1.1'
+__version__ = '1.2a1'
 __all__ = ['expect']
 
 
@@ -139,6 +139,21 @@ class expect(object):
                 repr(self._actual), repr(other))
 
         assert other in self._actual, msg
+
+    def icontains(self, other):
+        """
+        Ensure that ``other``is in the actual value ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to contain %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to contain %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert other.lower() in self._actual.lower(), msg
 
     def does_not_contain(self, other):
         """
