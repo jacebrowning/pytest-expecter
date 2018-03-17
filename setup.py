@@ -76,7 +76,4 @@ setuptools.setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Testing',
     ],
-
-    install_requires=[
-    ]
 )

@@ -16,6 +16,8 @@ expect(42) > 0
 ```python
 expect("Hello, world!").contains("world")
 expect("Hello, world!").excludes("foobar")  # or does_not_contain
+expect("Hello, world!").icontains("hello")
+expect("Hello, world!").iexcludes("FOOBAR")
 ```
 
 # Types

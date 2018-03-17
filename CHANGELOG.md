@@ -1,8 +1,13 @@
 # Revision History
 
+## 1.2 (2018/03/17)
+
+- Added `icontains` method to check for containment ignoring case.
+- Added `iexcludes` method to check for exclusion ignoring case.
+
 ## 1.1 (2018/02/21)
 
-- Add `expect` fixture to use directly in tests.
+- Added `expect` fixture to use directly in tests.
 
 ## 1.0 (2017/12/03)
 
