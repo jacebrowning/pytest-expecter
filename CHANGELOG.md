@@ -1,6 +1,6 @@
 # Revision History
 
-## 1.2 (unreleased)
+## 1.2 (2018/03/17)
 
 - Added `icontains` method to check for containment ignoring case.
 - Added `iexcludes` method to check for exclusion ignoring case.
