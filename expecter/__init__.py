@@ -142,7 +142,7 @@ class expect(object):
 
     def icontains(self, other):
         """
-        Ensure that ``other``is in the actual value ignoring case.
+        Same as ``contains` but ignoring case.
         """
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
@@ -153,7 +153,11 @@ class expect(object):
             msg = "Expected %s to contain %s (ignoring case) but it didn't" % (
                 repr(self._actual), repr(other))
 
-        assert other.lower() in self._actual.lower(), msg
+        expected = other.lower() if isinstance(other, basestring) else other
+        actual = (self._actual.lower() if isinstance(self._actual, basestring)
+                  else self._actual)
+
+        assert expected in actual, msg
 
     def does_not_contain(self, other):
         """
@@ -184,6 +188,25 @@ class expect(object):
                 repr(self._actual), repr(other))
 
         assert other not in self._actual, msg
+
+    def iexcludes(self, other):
+        """
+        Same as ``excludes`` but ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to exclude %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to exclude %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        expected = other.lower() if isinstance(other, basestring) else other
+        actual = (self._actual.lower() if isinstance(self._actual, basestring)
+                  else self._actual)
+
+        assert expected not in actual, msg
 
     @staticmethod
     def raises(expected_cls=Exception, message=None):

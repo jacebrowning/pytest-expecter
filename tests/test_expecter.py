@@ -160,6 +160,12 @@ def describe_expecter():
 
     def it_can_expect_containment_ignoring_case():
         expect("fooBar").icontains("FooBAR")
+        def _fails():
+            expect("fooBar").icontains("Qux")
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected 'fooBar' to contain 'Qux' (ignoring case) but it didn't")
 
     def it_can_expect_non_containment():
         expect([1]).does_not_contain(0)
@@ -178,6 +184,15 @@ def describe_expecter():
             _fails()
         assert fail_msg(_fails) == (
             "Expected [1] to exclude 1 but it didn't")
+
+    def it_can_expect_exclusion_ignoring_case():
+        expect([1]).iexcludes(0)
+        def _fails():
+            expect([1]).iexcludes(1)
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected [1] to exclude 1 (ignoring case) but it didn't")
 
     def it_optimizes_containment_message_for_multiline_strings():
         expect("<p>\nHello, world!\n</p>\n").contains("Hello, world!")
