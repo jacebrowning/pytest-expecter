@@ -20,7 +20,7 @@ import pytest
 
 
 __project__ = 'pytest-expecter'
-__version__ = '1.2'
+__version__ = '1.3b1'
 __all__ = ['expect']
 
 
@@ -207,6 +207,66 @@ class expect(object):
                   else self._actual)
 
         assert expected not in actual, msg
+
+    def startswith(self, other):
+        """
+        Ensure that ``other`` starts the actual value.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to start with %s but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to start with %s but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.startswith(other), msg
+
+    def istartswith(self, other):
+        """
+        Same as ``startswith`` but ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to start with %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to start with %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.lower().startswith(other.lower()), msg
+
+    def endswith(self, other):
+        """
+        Ensure that ``other`` ends the actual value.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to end with %s but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to end with %s but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.endswith(other), msg
+
+    def iendswith(self, other):
+        """
+        Same as ``endswith`` but ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to end with %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to end with %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.lower().endswith(other.lower()), msg
 
     @staticmethod
     def raises(expected_cls=Exception, message=None):

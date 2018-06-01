@@ -1,5 +1,9 @@
 # Revision History
 
+## 1.3 (unreleased)
+
+- Added `startswith`, `endswith`, `istartswith`, and `iendswith` helpers. 
+
 ## 1.2 (2018/03/17)
 
 - Added `icontains` method to check for containment ignoring case.
