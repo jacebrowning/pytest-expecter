@@ -6,9 +6,9 @@ import sys
 from collections import OrderedDict
 
 import pytest
+from tests.utils import fail_msg
 
 from expecter import expect
-from tests.utils import fail_msg
 
 
 def describe_expecter():
