@@ -9,10 +9,9 @@ CONFIG := $(wildcard *.py)
 MODULES := $(wildcard $(PACKAGE)/*.py)
 
 # Virtual environment paths
-export PIPENV_SHELL_COMPAT=true
 export PIPENV_VENV_IN_PROJECT=true
 export PIPENV_IGNORE_VIRTUALENVS=true
-ENV := .venv
+VENV := .venv
 
 # MAIN TASKS ##################################################################
 
@@ -40,28 +39,29 @@ doctor:  ## Confirm system dependencies are available
 
 # PROJECT DEPENDENCIES ########################################################
 
-DEPENDENCIES := $(ENV)/.pipenv-$(shell bin/checksum Pipfile*)
-METADATA := *.egg-info
+DEPENDENCIES = $(VENV)/.pipenv-$(shell bin/checksum Pipfile* setup.py)
 
 .PHONY: install
-install: $(DEPENDENCIES) $(METADATA)
+install: $(DEPENDENCIES)
 
 $(DEPENDENCIES):
-	pipenv install --dev
-	@ touch $@
-
-$(METADATA): setup.py
 	pipenv run python setup.py develop
+	pipenv install --dev
 	@ touch $@
 
 # CHECKS ######################################################################
 
+ISORT := pipenv run isort
 PYLINT := pipenv run pylint
 PYCODESTYLE := pipenv run pycodestyle
 PYDOCSTYLE := pipenv run pydocstyle
 
 .PHONY: check
-check: pylint pycodestyle pydocstyle ## Run linters and static analysis
+check: isort pylint pycodestyle pydocstyle ## Run linters and static analysis
+
+.PHONY: isort
+isort: install
+	$(ISORT) $(PACKAGES) $(CONFIG) --recursive --apply
 
 .PHONY: pylint
 pylint: install
@@ -83,40 +83,35 @@ COVERAGE_SPACE := pipenv run coverage.space
 
 RANDOM_SEED ?= $(shell date +%s)
 FAILURES := .cache/v/cache/lastfailed
-REPORTS ?= xmlreport
 
-PYTEST_CORE_OPTIONS := -ra -vv
-PYTEST_COV_OPTIONS := --cov=$(PACKAGE) --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-report=html
-PYTEST_RANDOM_OPTIONS := --random --random-seed=$(RANDOM_SEED)
-
-PYTEST_OPTIONS := $(PYTEST_CORE_OPTIONS) $(PYTEST_RANDOM_OPTIONS)
-ifndef DISABLE_COVERAGE
-PYTEST_OPTIONS += $(PYTEST_COV_OPTIONS)
+PYTEST_OPTIONS := --random --random-seed=$(RANDOM_SEED)
+ifdef DISABLE_COVERAGE
+PYTEST_OPTIONS += --no-cov --disable-warnings
 endif
-PYTEST_RERUN_OPTIONS := $(PYTEST_CORE_OPTIONS) --last-failed --exitfirst
+PYTEST_RERUN_OPTIONS := --last-failed --exitfirst
 
 .PHONY: test
 test: test-all ## Run unit and integration tests
 
 .PHONY: test-unit
 test-unit: install
-	@- mv $(FAILURES) $(FAILURES).bak
-	$(PYTEST) $(PYTEST_OPTIONS) $(PACKAGE) --junitxml=$(REPORTS)/unit.xml
-	@- mv $(FAILURES).bak $(FAILURES)
+	@ ( mv $(FAILURES) $(FAILURES).bak || true ) > /dev/null 2>&1
+	$(PYTEST) $(PACKAGE) $(PYTEST_OPTIONS)
+	@ ( mv $(FAILURES).bak $(FAILURES) || true ) > /dev/null 2>&1
 	$(COVERAGE_SPACE) $(REPOSITORY) unit
 
 .PHONY: test-int
 test-int: install
-	@ if test -e $(FAILURES); then $(PYTEST) $(PYTEST_RERUN_OPTIONS) tests; fi
+	@ if test -e $(FAILURES); then $(PYTEST) tests $(PYTEST_RERUN_OPTIONS); fi
 	@ rm -rf $(FAILURES)
-	$(PYTEST) $(PYTEST_OPTIONS) tests --junitxml=$(REPORTS)/integration.xml
+	$(PYTEST) tests $(PYTEST_OPTIONS)
 	$(COVERAGE_SPACE) $(REPOSITORY) integration
 
 .PHONY: test-all
 test-all: install
-	@ if test -e $(FAILURES); then $(PYTEST) $(PYTEST_RERUN_OPTIONS) $(PACKAGES); fi
+	@ if test -e $(FAILURES); then $(PYTEST) $(PACKAGES) $(PYTEST_RERUN_OPTIONS); fi
 	@ rm -rf $(FAILURES)
-	$(PYTEST) $(PYTEST_OPTIONS) $(PACKAGES) --junitxml=$(REPORTS)/overall.xml
+	$(PYTEST) $(PACKAGES) $(PYTEST_OPTIONS)
 	$(COVERAGE_SPACE) $(REPOSITORY) overall
 
 .PHONY: read-coverage
@@ -147,7 +142,7 @@ $(MKDOCS_INDEX): mkdocs.yml docs/*.md
 	ln -sf `realpath CHANGELOG.md --relative-to=docs/about` docs/about/changelog.md
 	ln -sf `realpath CONTRIBUTING.md --relative-to=docs/about` docs/about/contributing.md
 	ln -sf `realpath LICENSE.md --relative-to=docs/about` docs/about/license.md
-	$(MKDOCS) build --clean
+	$(MKDOCS) build --clean --strict
 
 .PHONY: mkdocs-live
 mkdocs-live: mkdocs
@@ -167,14 +162,11 @@ build: dist
 
 .PHONY: dist
 dist: install $(DIST_FILES)
-$(DIST_FILES): $(MODULES) README.rst CHANGELOG.rst
+$(DIST_FILES): $(MODULES)
 	rm -f $(DIST_FILES)
-	pipenv run python setup.py check --restructuredtext --strict --metadata
+	pipenv run python setup.py check --strict --metadata
 	pipenv run python setup.py sdist
 	pipenv run python setup.py bdist_wheel
-
-%.rst: %.md
-	pandoc -f markdown_github -t rst -o $@ $<
 
 .PHONY: exe
 exe: install $(EXE_FILES)
@@ -193,7 +185,7 @@ TWINE := pipenv run twine
 upload: dist ## Upload the current version to PyPI
 	git diff --name-only --exit-code
 	$(TWINE) upload dist/*.*
-	bin/open https://pypi.python.org/pypi/$(PROJECT)
+	bin/open https://pypi.org/project/$(PROJECT)
 
 # CLEANUP #####################################################################
 
@@ -202,7 +194,7 @@ clean: .clean-build .clean-docs .clean-test .clean-install ## Delete all generat
 
 .PHONY: clean-all
 clean-all: clean
-	rm -rf $(ENV)
+	rm -rf $(VENV)
 
 .PHONY: .clean-install
 .clean-install:

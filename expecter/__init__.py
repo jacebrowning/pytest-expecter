@@ -5,22 +5,23 @@ disable this behavior in py.test by including this keyword in the docstring:
 PYTEST_DONT_REWRITE
 """
 
-import os
-import sys
 import difflib
+import os
 import pprint
+import sys
 from collections import OrderedDict
+
+import pytest
+
 
 try:
     import builtins as __builtins__  # pylint: disable=redefined-builtin
 except ImportError:
     import __builtin__ as __builtins__
 
-import pytest
-
 
 __project__ = 'pytest-expecter'
-__version__ = '1.3b1'
+__version__ = '1.3b2'
 __all__ = ['expect']
 
 
@@ -398,7 +399,7 @@ def normalize(value):
     """Convert equivalent types for better diffs."""
     if isinstance(value, list):
         return [normalize(item) for item in value]
-    elif isinstance(value, OrderedDict) and sys.version >= '3.6.':
+    elif isinstance(value, OrderedDict) and sys.version_info >= (3, 6):
         return {k: normalize(v) for k, v in value.items()}
     return value
 

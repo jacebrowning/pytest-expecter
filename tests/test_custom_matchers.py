@@ -1,9 +1,9 @@
 # pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation,unused-argument
 
 import pytest
-
-from expecter import expect, add_expectation, clear_expectations
 from tests.utils import fail_msg
+
+from expecter import add_expectation, clear_expectations, expect
 
 
 def is_a_potato(thing):
