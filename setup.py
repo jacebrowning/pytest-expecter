@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 
-"""Setup script for the package."""
-
 import os
 import sys
-import logging
 
 import setuptools
 
@@ -27,19 +24,14 @@ def read_package_variable(key, filename='__init__.py'):
             parts = line.strip().split(' ', 2)
             if parts[:-1] == [key, '=']:
                 return parts[-1].strip("'")
-    logging.warning("'%s' not found in '%s'", key, module_path)
-    return None
+    sys.exit("'%s' not found in '%s'", key, module_path)
 
 
 def build_description():
     """Build a description for the project from documentation files."""
-    try:
-        readme = open("README.rst").read()
-        changelog = open("CHANGELOG.rst").read()
-    except IOError:
-        return "<placeholder>"
-    else:
-        return readme + '\n' + changelog
+    readme = open("README.md").read()
+    changelog = open("CHANGELOG.md").read()
+    return readme + '\n' + changelog
 
 
 check_python_version()
@@ -62,6 +54,7 @@ setuptools.setup(
     },
 
     long_description=build_description(),
+    long_description_content_type="text/markdown",
     license='BSD',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -74,6 +67,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Testing',
     ],
 )

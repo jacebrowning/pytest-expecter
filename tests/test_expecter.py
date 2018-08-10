@@ -6,9 +6,9 @@ import sys
 from collections import OrderedDict
 
 import pytest
+from tests.utils import fail_msg
 
 from expecter import expect
-from tests.utils import fail_msg
 
 
 def describe_expecter():
@@ -50,7 +50,7 @@ def describe_expecter():
                "  1021,"
                ).format(repr(sequence), repr(big_list)), fail_msg(_fails)
 
-    @pytest.mark.skipif(sys.version < '3.6',
+    @pytest.mark.skipif(sys.version_info < (3, 6),
                         reason="Only valid on Python 3.6+")
     def it_shows_optimized_diff_for_ordereddict_on_python36():
         actual = [OrderedDict(a=1, b=2, c=3, d=4, e=5, f=6)]
@@ -226,3 +226,39 @@ def describe_expecter():
             "Given text:\n\n"
             "<p>\nHello, world!\n</p>\n\n"
             "Expected to exclude 'Hello' but didn't")
+
+    def it_can_expect_startswith():
+        expect("fooBar").startswith("foo")
+        def _fails():
+            expect("fooBar").startswith("Foo")
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected 'fooBar' to start with 'Foo' but it didn't")
+
+    def it_can_expect_startswith_ignoring_case():
+        expect("fooBar").istartswith("Foo")
+        def _fails():
+            expect("fooBar").istartswith("qux")
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected 'fooBar' to start with 'qux' (ignoring case) but it didn't")
+
+    def it_can_expect_endswith():
+        expect("fooBar").endswith("Bar")
+        def _fails():
+            expect("fooBar").endswith("bar")
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected 'fooBar' to end with 'bar' but it didn't")
+
+    def it_can_expect_endswith_ignoring_case():
+        expect("fooBar").iendswith("bar")
+        def _fails():
+            expect("fooBar").iendswith("qux")
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == (
+            "Expected 'fooBar' to end with 'qux' (ignoring case) but it didn't")

@@ -1,5 +1,10 @@
 # Revision History
 
+## 1.3 (2018/08/10)
+
+- Added `startswith`, `endswith`, `istartswith`, and `iendswith` helpers. 
+- Added support for Python 3.7.
+
 ## 1.2 (2018/03/17)
 
 - Added `icontains` method to check for containment ignoring case.

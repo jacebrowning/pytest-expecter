@@ -5,22 +5,23 @@ disable this behavior in py.test by including this keyword in the docstring:
 PYTEST_DONT_REWRITE
 """
 
-import os
-import sys
 import difflib
+import os
 import pprint
+import sys
 from collections import OrderedDict
+
+import pytest
+
 
 try:
     import builtins as __builtins__  # pylint: disable=redefined-builtin
 except ImportError:
     import __builtin__ as __builtins__
 
-import pytest
-
 
 __project__ = 'pytest-expecter'
-__version__ = '1.2'
+__version__ = '1.3'
 __all__ = ['expect']
 
 
@@ -208,6 +209,66 @@ class expect(object):
 
         assert expected not in actual, msg
 
+    def startswith(self, other):
+        """
+        Ensure that ``other`` starts the actual value.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to start with %s but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to start with %s but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.startswith(other), msg
+
+    def istartswith(self, other):
+        """
+        Same as ``startswith`` but ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to start with %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to start with %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.lower().startswith(other.lower()), msg
+
+    def endswith(self, other):
+        """
+        Ensure that ``other`` ends the actual value.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to end with %s but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to end with %s but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.endswith(other), msg
+
+    def iendswith(self, other):
+        """
+        Same as ``endswith`` but ignoring case.
+        """
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, basestring) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to end with %s (ignoring case) but didn't" % (
+                self._actual.strip(), repr(other))
+        else:
+            msg = "Expected %s to end with %s (ignoring case) but it didn't" % (
+                repr(self._actual), repr(other))
+
+        assert self._actual.lower().endswith(other.lower()), msg
+
     @staticmethod
     def raises(expected_cls=Exception, message=None):
         """Ensure that an exception is raised. E.g.,
@@ -338,7 +399,7 @@ def normalize(value):
     """Convert equivalent types for better diffs."""
     if isinstance(value, list):
         return [normalize(item) for item in value]
-    elif isinstance(value, OrderedDict) and sys.version >= '3.6.':
+    elif isinstance(value, OrderedDict) and sys.version_info >= (3, 6):
         return {k: normalize(v) for k, v in value.items()}
     return value
 

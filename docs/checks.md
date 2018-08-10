@@ -20,6 +20,15 @@ expect("Hello, world!").icontains("hello")
 expect("Hello, world!").iexcludes("FOOBAR")
 ```
 
+# Strings
+
+```python
+expect("Hello, world!").startswith("Hello")
+expect("Hello, world!").endswith("world!")
+expect("Hello, world!").istartswith("hello")
+expect("Hello, world!").iendswith("WORLD!")
+```
+
 # Types
 
 ```python
