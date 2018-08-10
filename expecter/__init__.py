@@ -398,7 +398,7 @@ def normalize(value):
     """Convert equivalent types for better diffs."""
     if isinstance(value, list):
         return [normalize(item) for item in value]
-    elif isinstance(value, OrderedDict) and sys.version >= '3.6.':
+    elif isinstance(value, OrderedDict) and sys.version_info >= (3, 6):
         return {k: normalize(v) for k, v in value.items()}
     return value
 

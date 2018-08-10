@@ -50,7 +50,7 @@ def describe_expecter():
                "  1021,"
                ).format(repr(sequence), repr(big_list)), fail_msg(_fails)
 
-    @pytest.mark.skipif(sys.version < '3.6',
+    @pytest.mark.skipif(sys.version_info < (3, 6),
                         reason="Only valid on Python 3.6+")
     def it_shows_optimized_diff_for_ordereddict_on_python36():
         actual = [OrderedDict(a=1, b=2, c=3, d=4, e=5, f=6)]

@@ -3,6 +3,7 @@
 ## 1.3 (unreleased)
 
 - Added `startswith`, `endswith`, `istartswith`, and `iendswith` helpers. 
+- Added support for Python 3.7.
 
 ## 1.2 (2018/03/17)
 
