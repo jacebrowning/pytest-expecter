@@ -21,7 +21,7 @@ except ImportError:
 
 
 __project__ = 'pytest-expecter'
-__version__ = '1.3b2'
+__version__ = '1.3b3'
 __all__ = ['expect']
 
 
