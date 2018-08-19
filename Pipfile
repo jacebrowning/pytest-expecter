@@ -26,7 +26,8 @@ pytest-cov = "*"
 coverage-space = "*"
 
 # Documentation
-mkdocs = "*"
+mkdocs = "<1.0"
+backports-abc = ">=0.4" # missing mkdocs dependency on Python 2
 docutils = "*"
 pygments = "*"
 
