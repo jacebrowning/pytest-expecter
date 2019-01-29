@@ -137,12 +137,16 @@ docs/*.png: $(MODULES)
 
 .PHONY: mkdocs
 mkdocs: install $(MKDOCS_INDEX)
-$(MKDOCS_INDEX): mkdocs.yml docs/*.md
+$(MKDOCS_INDEX): docs/requirements.txt mkdocs.yml docs/*.md
 	ln -sf `realpath README.md --relative-to=docs` docs/index.md
 	ln -sf `realpath CHANGELOG.md --relative-to=docs/about` docs/about/changelog.md
 	ln -sf `realpath CONTRIBUTING.md --relative-to=docs/about` docs/about/contributing.md
 	ln -sf `realpath LICENSE.md --relative-to=docs/about` docs/about/license.md
 	$(MKDOCS) build --clean --strict
+
+# Workaround: https://github.com/rtfd/readthedocs.org/issues/5090
+docs/requirements.txt: Pipfile.lock
+	@ pipenv run pip freeze -qqq | grep mkdocs > $@
 
 .PHONY: mkdocs-live
 mkdocs-live: mkdocs
