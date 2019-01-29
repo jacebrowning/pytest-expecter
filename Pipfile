@@ -23,10 +23,10 @@ pytest-random = "*"
 pytest-cov = "*"
 
 # Reports
-coverage-space = "*"
+coveragespace = "*"
 
 # Documentation
-mkdocs = "<1.0"
+mkdocs = "~=1.0.4"
 backports-abc = ">=0.4" # missing mkdocs dependency on Python 2
 docutils = "*"
 pygments = "*"

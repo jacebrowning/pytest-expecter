@@ -40,5 +40,10 @@ expect(4.2).isinstance(float)
 ```python
 with expect.raises(ValueError):
     int("abc")
+
+with expect.raises(RuntimeError, "'dog' cannot 'quack'"):
+    animal = 'dog'
+    verb = 'quack'
+    raise RuntimeError("{!r} cannot {!r}".format(animal, verb))
 ```
 
