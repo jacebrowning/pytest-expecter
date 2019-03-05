@@ -3,7 +3,7 @@ site_description: Better testing with expecter and pytest.
 site_author: Jace Browning
 
 repo_url: https://github.com/jacebrowning/pytest-expecter
-edit_uri: https://github.com/jacebrowning/pytest-expecter/edit/jacebrowning/develop/docs
+edit_uri: https://github.com/jacebrowning/pytest-expecter/edit/develop/docs
 
 theme: readthedocs
 
