@@ -35,6 +35,15 @@ test_foobar.py:7: AssertionError
 
 # Installation
 
-```text
+Install it directly into an activated virtual environment:
+
+```
 $ pip install pytest-expecter
 ```
+
+or add it to your [Poetry](https://poetry.eustace.io/) project:
+
+```
+$ poetry add pytest-expecter
+```
+
