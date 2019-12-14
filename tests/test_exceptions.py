@@ -1,9 +1,9 @@
 # pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
 
 from nose.tools import assert_raises
-from tests.utils import fail_msg
 
 from expecter import expect
+from tests.utils import fail_msg
 
 
 def describe_expecter_when_expecting_exceptions():

@@ -1,6 +1,6 @@
 # Overview
 
-A `pytest` plugin for [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stacktrace.
+A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stacktrace.
 
 [![Build Status](http://img.shields.io/travis/jacebrowning/pytest-expecter/plugin.svg)](https://travis-ci.org/jacebrowning/pytest-expecter)
 [![PyPI Version](http://img.shields.io/pypi/v/pytest-expecter.svg)](https://pypi.python.org/pypi/pytest-expecter)
@@ -19,7 +19,7 @@ def describe_foobar():
         expect(2 + 3) == 6
 ```
 
-and get output like this: 
+and get output like this:
 
 ```text
 ============================= FAILURES =============================

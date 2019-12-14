@@ -5,9 +5,9 @@
 from __future__ import unicode_literals
 
 import pytest
-from tests.utils import fail_msg
 
 from expecter import expect
+from tests.utils import fail_msg
 
 
 try:
