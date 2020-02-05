@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "pytest-expecter"
-version = "2.0a1"
+version = "2.0a2"
 description = "Better testing with expecter and pytest."
 
 license = "BSD"
@@ -67,9 +67,9 @@ sniffer = "*"
 MacFSEvents = { version = "*", platform = "darwin" }
 pync = { version = "*", platform = "darwin" }
 
-[tool.poetry.scripts]
+[tool.poetry.plugins.pytest11]
 
-pytest-expecter = "expecter.plugin"
+"pytest-expecter" = "expecter.plugin"
 
 [tool.black]
 
