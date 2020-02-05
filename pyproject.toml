@@ -1,0 +1,82 @@
+[tool.poetry]
+
+name = "pytest-expecter"
+version = "2.0a1"
+description = "Better testing with expecter and pytest."
+
+license = "BSD"
+
+authors = ["Jace Browning <jacebrowning@gmail.com>"]
+
+readme = "README.md"
+
+homepage = "https://pypi.org/pytest-expecter/demo"
+documentation = "https://pytest-expecter.readthedocs.io"
+repository = "https://github.com/jacebrowning/pytest-expecter"
+
+keywords = [
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Plugins",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Topic :: Software Development :: Testing",
+]
+
+packages = [
+    { include = "expecter" },
+]
+
+[tool.poetry.dependencies]
+
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+
+# Formatters
+black = "=19.10b0"
+isort = "=4.3.21"
+
+# Linters
+mypy = "*"
+pydocstyle = "*"
+pylint = "^2.0"
+
+# Testing
+pytest = "^5.3.2"
+pytest-cov = "*"
+pytest-describe = "*"
+pytest-random = "*"
+freezegun = "*"
+
+# Reports
+coveragespace = "^3.1.1"
+
+# Documentation
+mkdocs = "^1.0"
+pygments = "*"
+
+# Tooling
+pyinstaller = "*"
+sniffer = "*"
+MacFSEvents = { version = "*", platform = "darwin" }
+pync = { version = "*", platform = "darwin" }
+
+[tool.poetry.scripts]
+
+pytest-expecter = "expecter.plugin"
+
+[tool.black]
+
+target-version = ["py36", "py37"]
+skip-string-normalization = true
+
+[build-system]
+
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

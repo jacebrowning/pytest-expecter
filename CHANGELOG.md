@@ -1,6 +1,11 @@
+# 2.0 (unreleased)
+
+- Dropped Python 2 support.
+- Added support for Python 3.8.
+
 # 1.3 (2018/08/10)
 
-- Added `startswith`, `endswith`, `istartswith`, and `iendswith` helpers. 
+- Added `startswith`, `endswith`, `istartswith`, and `iendswith` helpers.
 - Added support for Python 3.7.
 
 # 1.2 (2018/03/17)
@@ -18,4 +23,4 @@
 
 # 0.2.2.post7 (2017/12/02)
 
- - Added automatic conversion from `OrderedDict` to `dict` on Python 3.6 to create readable diffs.
+- Added automatic conversion from `OrderedDict` to `dict` on Python 3.6 to create readable diffs.
