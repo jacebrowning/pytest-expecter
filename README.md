@@ -2,7 +2,7 @@
 
 A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stacktrace.
 
-[![Build Status](https://img.shields.io/travis/jacebrowning/pytest-expecter/develop.svg?label=unix)](https://travis-ci.org/jacebrowning/pytest-expectero)
+[![Build Status](https://img.shields.io/travis/jacebrowning/pytest-expecter/develop.svg?label=unix)](https://travis-ci.org/jacebrowning/pytest-expecter)
 [![Coverage Status](https://img.shields.io/coveralls/jacebrowning/pytest-expecter/develop.svg)](https://coveralls.io/r/jacebrowning/pytest-expecter)
 [![PyPI Version](https://img.shields.io/pypi/v/pytest-expecter.svg)](https://pypi.org/project/pytest-expecter)
 [![PyPI License](https://img.shields.io/pypi/l/pytest-expecter.svg)](https://pypi.org/project/pytest-expecter)
