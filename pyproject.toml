@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "pytest-expecter"
-version = "2.0a2"
+version = "2.0"
 description = "Better testing with expecter and pytest."
 
 license = "BSD"
@@ -10,12 +10,11 @@ authors = ["Jace Browning <jacebrowning@gmail.com>"]
 
 readme = "README.md"
 
-homepage = "https://pypi.org/pytest-expecter/demo"
+homepage = "https://pypi.org/project/pytest-expecter"
 documentation = "https://pytest-expecter.readthedocs.io"
 repository = "https://github.com/jacebrowning/pytest-expecter"
 
-keywords = [
-]
+keywords = ["pytest", "testing"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Plugins",
@@ -25,6 +24,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Topic :: Software Development :: Testing",
 ]
 
