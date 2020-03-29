@@ -48,4 +48,3 @@ or add it to your [Poetry](https://poetry.eustace.io/) project:
 ```
 $ poetry add pytest-expecter
 ```
-

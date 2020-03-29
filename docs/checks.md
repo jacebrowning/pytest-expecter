@@ -9,13 +9,14 @@ expect(42) != 0
 
 ```python
 expect(42) > 0
+expect(1.2) <= 1.23
 ```
 
 # Contents
 
 ```python
-expect("Hello, world!").contains("world")
-expect("Hello, world!").excludes("foobar")  # or does_not_contain
+expect("Hello, world!").contains("world")  # or 'includes'
+expect("Hello, world!").excludes("foobar")  # or 'does_not_contain'
 expect("Hello, world!").icontains("hello")
 expect("Hello, world!").iexcludes("FOOBAR")
 ```
@@ -35,6 +36,14 @@ expect("Hello, world!").iendswith("WORLD!")
 expect(4.2).isinstance(float)
 ```
 
+# Identity
+
+```python
+expect(value).is_(True)
+expect(value).is_(False)
+expect(value).is_(None)
+```
+
 # Exceptions
 
 ```python
@@ -46,4 +55,3 @@ with expect.raises(RuntimeError, "'dog' cannot 'quack'"):
     verb = 'quack'
     raise RuntimeError("{!r} cannot {!r}".format(animal, verb))
 ```
-

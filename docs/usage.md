@@ -1,17 +1,19 @@
 # Import
 
-The `expect` utility can be imported as normal:
+The `expect` utility can be imported from the package:
 
 ```python
 from expecter import expect
+
+def test_foobar():
+    expect("foo") != "bar"
 ```
 
 # Fixture
 
-A `pytest` fixture is also available:
+The utility is also available as `pytest` fixture
 
 ```python
 def test_foobar(expect):
     expect("foo") != "bar"
 ```
-

@@ -1,3 +1,8 @@
+# 2.1 (2020-03-29)
+
+- Added support for matching identity via `expect(actual).is_(expected)`.
+- Added `includes` helper as an alias of `contains`.
+
 # 2.0 (2020-02-06)
 
 - Dropped Python 2 support.

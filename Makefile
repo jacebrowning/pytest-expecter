@@ -87,10 +87,6 @@ test: test-all ## Run unit and integration tests
 
 .PHONY: test-unit
 test-unit: install
-	# @ ( mv $(FAILURES) $(FAILURES).bak || true ) > /dev/null 2>&1
-	# poetry run pytest $(PACKAGE) $(PYTEST_OPTIONS)
-	# @ ( mv $(FAILURES).bak $(FAILURES) || true ) > /dev/null 2>&1
-	# poetry run coveragespace $(REPOSITORY) unit
 
 .PHONY: test-int
 test-int: install
@@ -130,6 +126,7 @@ $(MKDOCS_INDEX): docs/requirements.txt mkdocs.yml docs/*.md
 # Workaround: https://github.com/rtfd/readthedocs.org/issues/5090
 docs/requirements.txt: poetry.lock
 	@ poetry run pip freeze -qqq | grep mkdocs > $@
+	@ poetry run pip freeze -qqq | grep Pygments >> $@
 
 .PHONY: uml
 uml: install docs/*.png

@@ -1,12 +1,12 @@
-# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
+# pylint: disable=unused-variable,expression-not-assigned
 
-from nose.tools import assert_raises
+import pytest
 
 from expecter import expect
 from tests.utils import fail_msg
 
 
-def describe_expecter_when_expecting_exceptions():
+def describe_expect():
     def it_swallows_expected_exceptions():
         with expect.raises(KeyError):
             raise KeyError
@@ -16,7 +16,9 @@ def describe_expecter_when_expecting_exceptions():
             with expect.raises(KeyError):
                 pass
 
-        assert_raises(AssertionError, _expects_raise_but_doesnt_get_it)
+        with pytest.raises(AssertionError):
+            _expects_raise_but_doesnt_get_it()
+
         assert fail_msg(_expects_raise_but_doesnt_get_it) == (
             'Expected an exception of type KeyError but got none'
         )
@@ -26,7 +28,8 @@ def describe_expecter_when_expecting_exceptions():
             with expect.raises(KeyError):
                 raise ValueError
 
-        assert_raises(ValueError, _expects_key_error_but_gets_value_error)
+        with pytest.raises(ValueError):
+            _expects_key_error_but_gets_value_error()
 
     def it_can_expect_any_exception():
         with expect.raises():
@@ -41,7 +44,8 @@ def describe_expecter_when_expecting_exceptions():
             with expect.raises(ValueError, 'my message'):
                 raise ValueError('wrong message')
 
-        assert_raises(AssertionError, _fails)
+        with pytest.raises(AssertionError):
+            _fails()
         assert fail_msg(_fails) == (
             "Expected ValueError('my message') but got ValueError('wrong message')"
         )

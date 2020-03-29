@@ -1,4 +1,4 @@
-# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation,unused-argument
+# pylint: disable=unused-variable,expression-not-assigned,unused-argument
 
 import pytest
 
@@ -27,7 +27,7 @@ def describe_custom_matchers():
         with pytest.raises(AssertionError):
             _fails()
         assert fail_msg(_fails) == (
-            "Expected that 'not a potato' is_a_potato, but it isn't"
+            "Expected that 'not a potato' is a potato, but it isn't"
         )
 
     def they_adjust_failure_message_for_expectation_name():
@@ -41,10 +41,10 @@ def describe_custom_matchers():
             add_expectation(predicate)
 
         assert fail_msg(expect('walrus').can_do_something) == (
-            "Expected that 'walrus' can_do_something, but it can't"
+            "Expected that 'walrus' can do something, but it can't"
         )
         assert fail_msg(expect('walrus').will_do_something) == (
-            "Expected that 'walrus' will_do_something, but it won't"
+            "Expected that 'walrus' will do something, but it won't"
         )
 
     def they_have_default_failure_message():
@@ -53,7 +53,7 @@ def describe_custom_matchers():
 
         add_expectation(predicate_with_bad_name)
         assert fail_msg(expect('walrus').predicate_with_bad_name) == (
-            "Expected that 'walrus' predicate_with_bad_name, but got False"
+            "Expected that 'walrus' predicate with bad name, but got False"
         )
 
     def they_can_be_cleared():
