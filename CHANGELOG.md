@@ -1,3 +1,7 @@
+# 2.1 (beta)
+
+- Added support for matching identity via `expect(actual).is_(expected)`.
+
 # 2.0 (2020-02-06)
 
 - Dropped Python 2 support.

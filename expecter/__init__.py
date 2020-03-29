@@ -111,9 +111,18 @@ class expect:
     def __repr__(self):
         return 'expect(%s)' % repr(self._actual)
 
+    def is_(self, other):
+        """Ensure that ``other`` is identical to the actual value."""
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+        assert self._actual is other, "Expected value to be %s, but it wasn't" % (
+            repr(other),
+        )
+        return self
+
     def isinstance(self, expected_cls):
-        """
-        Ensures that the actual value is of type ``expected_cls`` (like ``assert isinstance(actual, MyClass)``).
+        """Ensure the actual value is of type ``expected_cls``.
+
+        This is similar to ``assert isinstance(actual, MyClass)``.
         """
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
         if isinstance(expected_cls, tuple):
@@ -127,8 +136,9 @@ class expect:
         )
 
     def contains(self, other):
-        """
-        Ensure that ``other`` is in the actual value (like ``assert other in actual``).
+        """Ensure that ``other`` is in the actual value.
+
+        This is similar to ``assert other in actual``.
         """
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
@@ -146,9 +156,7 @@ class expect:
         assert other in self._actual, msg
 
     def icontains(self, other):
-        """
-        Same as ``contains` but ignoring case.
-        """
+        """Same as ``contains` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -168,9 +176,7 @@ class expect:
         assert expected in actual, msg
 
     def does_not_contain(self, other):
-        """
-        Opposite of ``contains``
-        """
+        """Opposite of ``contains``."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -187,9 +193,7 @@ class expect:
         assert other not in self._actual, msg
 
     def excludes(self, other):
-        """
-        Opposite of ``contains`` with alternate phrasing.
-        """
+        """Opposite of ``contains`` with alternate phrasing."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -206,9 +210,7 @@ class expect:
         assert other not in self._actual, msg
 
     def iexcludes(self, other):
-        """
-        Same as ``excludes`` but ignoring case.
-        """
+        """Same as ``excludes`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -228,9 +230,7 @@ class expect:
         assert expected not in actual, msg
 
     def startswith(self, other):
-        """
-        Ensure that ``other`` starts the actual value.
-        """
+        """Ensure that ``other`` starts the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -247,9 +247,7 @@ class expect:
         assert self._actual.startswith(other), msg
 
     def istartswith(self, other):
-        """
-        Same as ``startswith`` but ignoring case.
-        """
+        """Same as ``startswith`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -266,9 +264,7 @@ class expect:
         assert self._actual.lower().startswith(other.lower()), msg
 
     def endswith(self, other):
-        """
-        Ensure that ``other`` ends the actual value.
-        """
+        """Ensure that ``other`` ends the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -285,9 +281,7 @@ class expect:
         assert self._actual.endswith(other), msg
 
     def iendswith(self, other):
-        """
-        Same as ``endswith`` but ignoring case.
-        """
+        """Same as ``endswith`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
         if isinstance(self._actual, str) and '\n' in self._actual:
@@ -305,7 +299,7 @@ class expect:
 
     @staticmethod
     def raises(expected_cls=Exception, message=None):
-        """Ensure that an exception is raised. E.g.,
+        """Ensure that an exception is raised.
 
         ::
 
