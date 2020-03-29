@@ -15,7 +15,7 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == ("Expected value to be True, but it wasn't")
+        assert fail_msg(_fails) == ("Expected condition to be True, but it was False")
 
     def it_can_expect_identity_with_false():
         expect(1 > 2).is_(False)
@@ -25,7 +25,7 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == ("Expected value to be False, but it wasn't")
+        assert fail_msg(_fails) == ("Expected condition to be False, but it was True")
 
     def it_can_expect_identity_with_none():
         data = {'a': 1}
@@ -37,4 +37,4 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == ("Expected value to be None, but it wasn't")
+        assert fail_msg(_fails) == ("Expected condition to be None, but it was 1")
