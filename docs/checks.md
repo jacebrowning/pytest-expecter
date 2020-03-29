@@ -35,6 +35,14 @@ expect("Hello, world!").iendswith("WORLD!")
 expect(4.2).isinstance(float)
 ```
 
+# Identity
+
+```python
+expect(bool("foobar")).is_(True)
+expect(bool("")).is_(False)
+expect({}.get('key')).is_(None)
+```
+
 # Exceptions
 
 ```python
@@ -46,4 +54,3 @@ with expect.raises(RuntimeError, "'dog' cannot 'quack'"):
     verb = 'quack'
     raise RuntimeError("{!r} cannot {!r}".format(animal, verb))
 ```
-
