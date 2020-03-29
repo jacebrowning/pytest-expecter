@@ -402,7 +402,7 @@ class _CustomExpectation:
     def enforce(self, *args, **kwargs):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
         if not self._predicate(self._actual, *args, **kwargs):
-            predicate_name = self._predicate.__name__
+            predicate_name = self._predicate.__name__.replace('_', ' ')
             raise AssertionError(
                 'Expected that %s %s, but %s'
                 % (repr(self._actual), predicate_name, self._negative_verb())

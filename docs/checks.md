@@ -9,6 +9,7 @@ expect(42) != 0
 
 ```python
 expect(42) > 0
+expect(1.2) <= 1.23
 ```
 
 # Contents
@@ -38,9 +39,9 @@ expect(4.2).isinstance(float)
 # Identity
 
 ```python
-expect(bool("foobar")).is_(True)
-expect(bool("")).is_(False)
-expect({}.get('key')).is_(None)
+expect(value).is_(True)
+expect(value).is_(False)
+expect(value).is_(None)
 ```
 
 # Exceptions

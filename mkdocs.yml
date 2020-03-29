@@ -12,8 +12,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Usage: usage.md
-  - Checks: checks.md
+  - Basic Usage: usage.md
+  - Builtin Checks: checks.md
+  - Custom Checks: custom.md
   - About:
       - Release Notes: about/changelog.md
       - Contributing: about/contributing.md
