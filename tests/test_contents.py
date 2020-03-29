@@ -29,6 +29,16 @@ def describe_expect():
             "Expected 'fooBar' to contain 'Qux' (ignoring case) but it didn't"
         )
 
+    def it_can_expect_inclusion():
+        expect([1]).includes(1)
+
+        def _fails():
+            expect([2]).includes(1)
+
+        with pytest.raises(AssertionError):
+            _fails()
+        assert fail_msg(_fails) == ("Expected [2] to include 1 but it didn't")
+
     def it_can_expect_non_containment():
         expect([1]).does_not_contain(0)
 

@@ -14,8 +14,8 @@ expect(42) > 0
 # Contents
 
 ```python
-expect("Hello, world!").contains("world")
-expect("Hello, world!").excludes("foobar")  # or does_not_contain
+expect("Hello, world!").contains("world")  # or 'includes'
+expect("Hello, world!").excludes("foobar")  # or 'does_not_contain'
 expect("Hello, world!").icontains("hello")
 expect("Hello, world!").iexcludes("FOOBAR")
 ```

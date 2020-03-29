@@ -175,6 +175,23 @@ class expect:
 
         assert expected in actual, msg
 
+    def includes(self, other):
+        """Same as ``contains`` but with alternate phrasing."""
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+
+        if isinstance(self._actual, str) and '\n' in self._actual:
+            msg = "Given text:\n\n%s\n\nExpected to include %s but didn't" % (
+                self._actual.strip(),
+                repr(other),
+            )
+        else:
+            msg = "Expected %s to include %s but it didn't" % (
+                repr(self._actual),
+                repr(other),
+            )
+
+        assert other in self._actual, msg
+
     def does_not_contain(self, other):
         """Opposite of ``contains``."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
