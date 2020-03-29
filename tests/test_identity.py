@@ -37,4 +37,4 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == ("Expected condition to be None, but it was 1")
+        assert fail_msg(_fails) == ("Expected value to be None, but it was 1")

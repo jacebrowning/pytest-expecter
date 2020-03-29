@@ -114,7 +114,9 @@ class expect:
     def is_(self, other):
         """Ensure that ``other`` is identical to the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual is other, "Expected condition to be %s, but it was %s" % (
+        label = 'condition' if isinstance(self._actual, bool) else 'value'
+        assert self._actual is other, "Expected %s to be %s, but it was %s" % (
+            label,
             repr(other),
             repr(self._actual),
         )
