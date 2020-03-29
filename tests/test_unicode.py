@@ -1,5 +1,4 @@
-# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation
-
+# pylint: disable=unused-variable,expression-not-assigned
 
 import pytest
 
@@ -7,7 +6,7 @@ from expecter import expect
 from tests.utils import fail_msg
 
 
-def describe_expecter():
+def describe_expect():
     def it_shows_diff_when_strings_differ():
         value = 'ueber\ngeek'
         fixture = 'über\ngeek'

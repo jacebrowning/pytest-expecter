@@ -1,4 +1,4 @@
-# pylint: disable=unused-variable,expression-not-assigned,redefined-builtin,multiple-statements,bad-continuation,unused-argument
+# pylint: disable=unused-variable,expression-not-assigned,unused-argument
 
 import pytest
 
