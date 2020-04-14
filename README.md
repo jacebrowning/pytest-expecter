@@ -9,7 +9,7 @@ A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernh
 
 # Quick Start
 
-This lets you write tests (optionally using [ropez/pytest-describe](https://github.com/ropez/pytest-describe)) like this:
+This lets you write tests (optionally using [pytest-describe](https://github.com/pytest-dev/pytest-describe)) like this:
 
 ```python
 def describe_foobar():
