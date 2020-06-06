@@ -1,3 +1,7 @@
+# 2.2 (beta)
+
+- Added support for matching non-identity via `expect(actual).is_not(expected)`.
+
 # 2.1 (2020-03-29)
 
 - Added support for matching identity via `expect(actual).is_(expected)`.
