@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "pytest-expecter"
-version = "2.1"
+version = "2.2b1"
 description = "Better testing with expecter and pytest."
 
 license = "BSD"
@@ -40,8 +40,8 @@ python = "^3.6"
 [tool.poetry.dev-dependencies]
 
 # Formatters
-black = "=19.10b0"
-isort = "=4.3.21"
+black = "19.10b0"
+isort = "4.3.21"
 
 # Linters
 mypy = "*"
@@ -51,7 +51,7 @@ pylint = "^2.0"
 # Testing
 pytest = "^5.4"
 pytest-cov = "*"
-pytest-describe = { git = "https://github.com/jacebrowning/pytest-describe", branch = "pytest-5.4-support" }
+pytest-describe = "^1.0"
 pytest-random = "*"
 freezegun = "*"
 

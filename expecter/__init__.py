@@ -122,6 +122,16 @@ class expect:
         )
         return self
 
+    def is_not(self, other):
+        """Ensure that ``other`` is not identical to the actual value."""
+        __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
+        label = 'condition' if isinstance(self._actual, bool) else 'value'
+        assert self._actual is not other, "Expected %s to not be %s, but it was" % (
+            label,
+            repr(other),
+        )
+        return self
+
     def isinstance(self, expected_cls):
         """Ensure the actual value is of type ``expected_cls``.
 

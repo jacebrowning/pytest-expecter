@@ -42,6 +42,9 @@ expect(4.2).isinstance(float)
 expect(value).is_(True)
 expect(value).is_(False)
 expect(value).is_(None)
+expect(value).is_not(True)
+expect(value).is_not(False)
+expect(value).is_not(None)
 ```
 
 # Exceptions
