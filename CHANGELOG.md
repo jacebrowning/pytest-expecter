@@ -1,4 +1,4 @@
-# 2.2 (beta)
+# 2.2 (2020-07-08)
 
 - Added support for matching non-identity via `expect(actual).is_not(expected)`.
 - Added `expect.anything` constant to ignore parts of a nested structure.
