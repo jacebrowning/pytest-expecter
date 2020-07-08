@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "pytest-expecter"
-version = "2.2b1"
+version = "2.2"
 description = "Better testing with expecter and pytest."
 
 license = "BSD"

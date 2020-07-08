@@ -24,6 +24,13 @@ except DistributionNotFound:
 __all__ = ['expect']
 
 
+class Anything:
+    """Placeholder value to ignore uninteresting response data."""
+
+    def __eq__(self, other):
+        return True
+
+
 class expect:
     """
     All assertions are written using :class:`expect`. Usually, it's applied to
@@ -48,6 +55,8 @@ class expect:
     """
 
     MIN_DIFF_SIZE = 74
+
+    anything = Anything()
 
     def __init__(self, actual):
         self._actual = normalize(actual)
