@@ -15,6 +15,7 @@ nav:
   - Basic Usage: usage.md
   - Builtin Checks: checks.md
   - Custom Checks: custom.md
+  - Constants: constants.md
   - About:
       - Release Notes: about/changelog.md
       - Contributing: about/contributing.md
