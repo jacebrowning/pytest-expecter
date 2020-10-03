@@ -1,6 +1,6 @@
 # Overview
 
-A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernhardt/expecter) that hides the internal stacktrace.
+A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernhardt/expecter) to write expressive tests.
 
 [![Build Status](https://img.shields.io/travis/jacebrowning/pytest-expecter/develop.svg?label=unix)](https://travis-ci.org/jacebrowning/pytest-expecter)
 [![Coverage Status](https://img.shields.io/coveralls/jacebrowning/pytest-expecter/develop.svg)](https://coveralls.io/r/jacebrowning/pytest-expecter)
@@ -9,7 +9,7 @@ A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernh
 
 # Quick Start
 
-This lets you write tests (optionally using [pytest-describe](https://github.com/pytest-dev/pytest-describe)) like this:
+With this plugin you can write tests (optionally using [pytest-describe](https://github.com/pytest-dev/pytest-describe)) like this:
 
 ```python
 def describe_foobar():
