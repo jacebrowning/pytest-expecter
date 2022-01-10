@@ -47,9 +47,10 @@ isort = "4.3.21"
 mypy = "*"
 pydocstyle = "*"
 pylint = "^2.0"
+types-setuptools = "*"
 
 # Testing
-pytest = "^5.4"
+pytest = "^6.2.5"
 pytest-cov = "*"
 pytest-describe = "^1.0"
 pytest-random = "*"
@@ -59,8 +60,8 @@ freezegun = "*"
 coveragespace = "^3.1.1"
 
 # Documentation
-mkdocs = "~1.0"
-pygments = "^2.5.2"
+mkdocs = "^1.2.3"
+pygments = "*"
 
 # Tooling
 pyinstaller = "*"

@@ -66,7 +66,7 @@ class expect:
         if is_custom_expectation:
             predicate = _custom_expectations[name]
             return _CustomExpectation(predicate, self._actual)
-        return getattr(super(expect, self), name)
+        return getattr(super(), name)
 
     def __eq__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
