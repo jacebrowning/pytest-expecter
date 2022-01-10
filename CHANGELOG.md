@@ -1,3 +1,7 @@
+# 2.3 (2022-01-20)
+
+- Updated the representation of `expect.anything` to simplify diffs.
+
 # 2.2 (2020-07-08)
 
 - Added support for matching non-identity via `expect(actual).is_not(expected)`.
