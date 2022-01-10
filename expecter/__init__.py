@@ -27,6 +27,9 @@ __all__ = ['expect']
 class Anything:
     """Placeholder value to ignore uninteresting response data."""
 
+    def __repr__(self):
+        return '<anything>'
+
     def __eq__(self, other):
         return True
 
