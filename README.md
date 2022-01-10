@@ -23,7 +23,7 @@ def describe_foobar():
 
 and get output like this:
 
-```text
+```python
 ============================= FAILURES =============================
 ___________________ describe_foobar.it_can_fail ____________________
 
@@ -43,7 +43,7 @@ Install it directly into an activated virtual environment:
 $ pip install pytest-expecter
 ```
 
-or add it to your [Poetry](https://poetry.eustace.io/) project:
+or add it to your [Poetry](https://python-poetry.org/docs/) project:
 
 ```
 $ poetry add pytest-expecter
