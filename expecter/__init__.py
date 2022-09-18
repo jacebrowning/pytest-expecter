@@ -10,14 +10,12 @@ import os
 import pprint
 import sys
 from collections import OrderedDict
-
-import pytest
-from pkg_resources import DistributionNotFound, get_distribution
+from importlib.metadata import PackageNotFoundError, version
 
 
 try:
-    __version__ = get_distribution('pytest-expecter').version
-except DistributionNotFound:
+    __version__ = version('pytest-expecter')
+except PackageNotFoundError:
     __version__ = '(local)'
 
 
