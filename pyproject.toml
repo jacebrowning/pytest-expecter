@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "pytest-expecter"
-version = "2.3"
+version = "3.0"
 description = "Better testing with expecter and pytest."
 
 license = "BSD"
@@ -23,9 +23,9 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Testing",
 ]
 
@@ -35,7 +35,7 @@ packages = [
 
 [tool.poetry.dependencies]
 
-python = "^3.6"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 

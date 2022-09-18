@@ -1,3 +1,7 @@
+# 3.0 (2022-09-18)
+
+- Dropped support for Python 3.6 and 3.7.
+
 # 2.3 (2022-01-20)
 
 - Updated the representation of `expect.anything` to simplify diffs.
