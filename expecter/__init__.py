@@ -28,6 +28,7 @@ def _hidetraceback(f):
     def _(*args, **kwargs):
         f.__globals__['__tracebackhide__'] = os.getenv('EXPECTER_HIDETRACEBACK')
         return f(*args, **kwargs)
+
     return _
 
 
@@ -77,7 +78,7 @@ class expect:
             predicate = _custom_expectations[name]
             return _CustomExpectation(predicate, self._actual)
         return getattr(super(), name)
-    
+
     @_hidetraceback
     def __eq__(self, other):
         msg = 'Expected %s but got %s' % (repr(other), repr(self._actual))
@@ -87,7 +88,7 @@ class expect:
             msg += normalized_diff(pprint.pformat(other), pprint.pformat(self._actual))
         assert self._actual == other, msg
         return self
-    
+
     @_hidetraceback
     def __ne__(self, other):
         assert self._actual != other, 'Expected anything except %s but got it' % repr(
@@ -287,7 +288,7 @@ class expect:
             )
 
         assert self._actual.startswith(other), msg
-    
+
     @_hidetraceback
     def istartswith(self, other):
         """Same as ``startswith`` but ignoring case."""
