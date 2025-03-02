@@ -8,8 +8,8 @@ from tests.utils import fail_msg
 
 def describe_expect():
     def it_shows_diff_when_strings_differ():
-        value = 'ueber\ngeek'
-        fixture = 'über\ngeek'
+        value = "ueber\ngeek"
+        fixture = "über\ngeek"
         assert isinstance(value, str), "value is a " + repr(type(value))
         assert isinstance(fixture, str), "fixture is a " + repr(type(fixture))
 
@@ -27,5 +27,5 @@ def describe_expect():
             " geek"
         )
         # Normalize real msg for differences in py2 and py3
-        real = fail_msg(_fails).replace("u'", "'").replace('\\xfc', '\xfc')
-        assert real == msg, '\n' + repr(real) + '\n' + repr(msg)
+        real = fail_msg(_fails).replace("u'", "'").replace("\\xfc", "\xfc")
+        assert real == msg, "\n" + repr(real) + "\n" + repr(msg)

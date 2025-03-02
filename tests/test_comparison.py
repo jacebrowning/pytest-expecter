@@ -15,7 +15,7 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == 'Expected something less than 0 but got 1'
+        assert fail_msg(_fails) == "Expected something less than 0 but got 1"
 
     def it_can_expect_greater_than():
         expect(2) > 1
@@ -25,7 +25,7 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == ('Expected something greater than 1 but got 0')
+        assert fail_msg(_fails) == ("Expected something greater than 1 but got 0")
 
     def it_can_expect_less_than_or_equal():
         expect(1) <= 1
@@ -37,7 +37,7 @@ def describe_expect():
         with pytest.raises(AssertionError):
             _fails()
         assert fail_msg(_fails) == (
-            'Expected something less than or equal to 1 but got 2'
+            "Expected something less than or equal to 1 but got 2"
         )
 
     def it_can_expect_greater_than_or_equal():
@@ -50,7 +50,7 @@ def describe_expect():
         with pytest.raises(AssertionError):
             _fails()
         assert fail_msg(_fails) == (
-            'Expected something greater than or equal to 2 but got 1'
+            "Expected something greater than or equal to 2 but got 1"
         )
 
     def it_can_chain_comparison_expectations():

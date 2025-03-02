@@ -16,17 +16,17 @@ def describe_expect():
         with pytest.raises(AssertionError):
             _fails()
         assert fail_msg(_fails) == (
-            'Expected an instance of str but got an instance of int'
+            "Expected an instance of str but got an instance of int"
         )
 
     def it_can_expect_instance_for_multiple_types():
-        expect('str').isinstance((str, bytes))
+        expect("str").isinstance((str, bytes))
 
         def _fails():
-            expect('str').isinstance((int, tuple))
+            expect("str").isinstance((int, tuple))
 
         with pytest.raises(AssertionError):
             _fails()
         assert fail_msg(_fails) == (
-            'Expected an instance of int or tuple but got an instance of str'
+            "Expected an instance of int or tuple but got an instance of str"
         )

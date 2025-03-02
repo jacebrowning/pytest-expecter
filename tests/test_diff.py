@@ -12,7 +12,7 @@ from tests.utils import fail_msg
 def describe_expect():
     def it_shows_diff_when_strings_differ():
         def _fails():
-            expect('foo\nbar') == 'foo\nbaz'
+            expect("foo\nbar") == "foo\nbaz"
 
         with pytest.raises(AssertionError):
             _fails()
@@ -70,7 +70,7 @@ def describe_expect():
 
     def it_supports_ignoring_values_with_anything():
         def _fails():
-            expect({'foo': 2, 'bar': None}) == {'foo': 1, 'bar': expect.anything}
+            expect({"foo": 2, "bar": None}) == {"foo": 1, "bar": expect.anything}
 
         with pytest.raises(AssertionError):
             _fails()

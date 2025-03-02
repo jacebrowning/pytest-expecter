@@ -7,7 +7,7 @@ from tests.utils import fail_msg
 
 
 def is_a_potato(thing):
-    return thing == 'potato'
+    return thing == "potato"
 
 
 def describe_custom_matchers():
@@ -16,13 +16,13 @@ def describe_custom_matchers():
 
     def they_can_succeed():
         add_expectation(is_a_potato)
-        expect('potato').is_a_potato()
+        expect("potato").is_a_potato()
 
     def they_can_fail():
         add_expectation(is_a_potato)
 
         def _fails():
-            expect('not a potato').is_a_potato()
+            expect("not a potato").is_a_potato()
 
         with pytest.raises(AssertionError):
             _fails()
@@ -40,10 +40,10 @@ def describe_custom_matchers():
         for predicate in [can_do_something, will_do_something]:
             add_expectation(predicate)
 
-        assert fail_msg(expect('walrus').can_do_something) == (
+        assert fail_msg(expect("walrus").can_do_something) == (
             "Expected that 'walrus' can do something, but it can't"
         )
-        assert fail_msg(expect('walrus').will_do_something) == (
+        assert fail_msg(expect("walrus").will_do_something) == (
             "Expected that 'walrus' will do something, but it won't"
         )
 
@@ -52,25 +52,25 @@ def describe_custom_matchers():
             return False
 
         add_expectation(predicate_with_bad_name)
-        assert fail_msg(expect('walrus').predicate_with_bad_name) == (
+        assert fail_msg(expect("walrus").predicate_with_bad_name) == (
             "Expected that 'walrus' predicate with bad name, but got False"
         )
 
     def they_can_be_cleared():
         clear_expectations()
         with pytest.raises(AttributeError):
-            expect('potato').is_a_potato
+            expect("potato").is_a_potato
 
     def they_can_have_postional_arguments():
         def is_a(thing, vegetable):
             return thing == vegetable
 
         add_expectation(is_a)
-        expect('potato').is_a('potato')
+        expect("potato").is_a("potato")
 
     def they_can_have_keyword_arguments():
         def is_a(thing, vegetable):
             return thing == vegetable
 
         add_expectation(is_a)
-        expect('potato').is_a(vegetable='potato')
+        expect("potato").is_a(vegetable="potato")

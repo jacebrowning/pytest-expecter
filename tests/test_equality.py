@@ -15,7 +15,7 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == 'Expected 2 but got 1'
+        assert fail_msg(_fails) == "Expected 2 but got 1"
 
     def it_can_compare_bytes():
         null = bytes((0,))
@@ -36,16 +36,16 @@ def describe_expect():
 
         with pytest.raises(AssertionError):
             _fails()
-        assert fail_msg(_fails) == 'Expected anything except 1 but got it'
+        assert fail_msg(_fails) == "Expected anything except 1 but got it"
 
     def it_can_expect_equality_on_partial_structure():
-        expect({'id': 42, 'name': "Jane Doe"}) == {
-            'id': expect.anything,
-            'name': "Jane Doe",
+        expect({"id": 42, "name": "Jane Doe"}) == {
+            "id": expect.anything,
+            "name": "Jane Doe",
         }
 
     def it_can_expect_inequality_on_partial_structure():
-        expect({'id': 42, 'name': "Jane Doe"}) != {
-            'id': expect.anything,
-            'name': "John Doe",
+        expect({"id": 42, "name": "Jane Doe"}) != {
+            "id": expect.anything,
+            "name": "John Doe",
         }

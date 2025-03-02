@@ -12,21 +12,20 @@ import sys
 from collections import OrderedDict
 from importlib.metadata import PackageNotFoundError, version
 
-
 try:
-    __version__ = version('pytest-expecter')
+    __version__ = version("pytest-expecter")
 except PackageNotFoundError:
-    __version__ = '(local)'
+    __version__ = "(local)"
 
 
-__all__ = ['expect']
+__all__ = ["expect"]
 
 
 class Anything:
     """Placeholder value to ignore uninteresting response data."""
 
     def __repr__(self):
-        return '<anything>'
+        return "<anything>"
 
     def __eq__(self, other):
         return True
@@ -71,7 +70,7 @@ class expect:
 
     def __eq__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        msg = 'Expected %s but got %s' % (repr(other), repr(self._actual))
+        msg = "Expected %s but got %s" % (repr(other), repr(self._actual))
         if isinstance(other, str) and isinstance(self._actual, str):
             msg += normalized_diff(other, self._actual)
         elif len(repr(self._actual)) > self.MIN_DIFF_SIZE:
@@ -81,14 +80,14 @@ class expect:
 
     def __ne__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual != other, 'Expected anything except %s but got it' % repr(
+        assert self._actual != other, "Expected anything except %s but got it" % repr(
             self._actual
         )
         return self
 
     def __lt__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual < other, 'Expected something less than %s but got %s' % (
+        assert self._actual < other, "Expected something less than %s but got %s" % (
             repr(other),
             repr(self._actual),
         )
@@ -96,7 +95,7 @@ class expect:
 
     def __gt__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual > other, 'Expected something greater than %s but got %s' % (
+        assert self._actual > other, "Expected something greater than %s but got %s" % (
             repr(other),
             repr(self._actual),
         )
@@ -104,27 +103,31 @@ class expect:
 
     def __le__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual <= other, (
-            'Expected something less than or equal to %s but got %s'
-            % (repr(other), repr(self._actual))
+        assert (
+            self._actual <= other
+        ), "Expected something less than or equal to %s but got %s" % (
+            repr(other),
+            repr(self._actual),
         )
         return self
 
     def __ge__(self, other):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        assert self._actual >= other, (
-            'Expected something greater than or equal to %s but got %s'
-            % (repr(other), repr(self._actual))
+        assert (
+            self._actual >= other
+        ), "Expected something greater than or equal to %s but got %s" % (
+            repr(other),
+            repr(self._actual),
         )
         return self
 
     def __repr__(self):
-        return 'expect(%s)' % repr(self._actual)
+        return "expect(%s)" % repr(self._actual)
 
     def is_(self, other):
         """Ensure that ``other`` is identical to the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        label = 'condition' if isinstance(self._actual, bool) else 'value'
+        label = "condition" if isinstance(self._actual, bool) else "value"
         assert self._actual is other, "Expected %s to be %s, but it was %s" % (
             label,
             repr(other),
@@ -135,7 +138,7 @@ class expect:
     def is_not(self, other):
         """Ensure that ``other`` is not identical to the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
-        label = 'condition' if isinstance(self._actual, bool) else 'value'
+        label = "condition" if isinstance(self._actual, bool) else "value"
         assert self._actual is not other, "Expected %s to not be %s, but it was" % (
             label,
             repr(other),
@@ -150,12 +153,14 @@ class expect:
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
         if isinstance(expected_cls, tuple):
             cls_name = [c.__name__ for c in expected_cls]
-            cls_name = ' or '.join(cls_name)  # type: ignore
+            cls_name = " or ".join(cls_name)  # type: ignore
         else:
             cls_name = expected_cls.__name__
-        assert isinstance(self._actual, expected_cls), (
-            'Expected an instance of %s but got an instance of %s'
-            % (cls_name, self._actual.__class__.__name__)
+        assert isinstance(
+            self._actual, expected_cls
+        ), "Expected an instance of %s but got an instance of %s" % (
+            cls_name,
+            self._actual.__class__.__name__,
         )
 
     def contains(self, other):
@@ -165,7 +170,7 @@ class expect:
         """
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to contain %s but didn't" % (
                 self._actual.strip(),
                 repr(other),
@@ -182,7 +187,7 @@ class expect:
         """Same as ``contains` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = (
                 "Given text:\n\n%s\n\nExpected to contain %s (ignoring case) but didn't"
                 % (self._actual.strip(), repr(other))
@@ -202,7 +207,7 @@ class expect:
         """Same as ``contains`` but with alternate phrasing."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to include %s but didn't" % (
                 self._actual.strip(),
                 repr(other),
@@ -219,7 +224,7 @@ class expect:
         """Opposite of ``contains``."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected not to contain %s but did" % (
                 self._actual.strip(),
                 repr(other),
@@ -236,7 +241,7 @@ class expect:
         """Opposite of ``contains`` with alternate phrasing."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to exclude %s but didn't" % (
                 self._actual.strip(),
                 repr(other),
@@ -253,7 +258,7 @@ class expect:
         """Same as ``excludes`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = (
                 "Given text:\n\n%s\n\nExpected to exclude %s (ignoring case) but didn't"
                 % (self._actual.strip(), repr(other))
@@ -273,7 +278,7 @@ class expect:
         """Ensure that ``other`` starts the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to start with %s but didn't" % (
                 self._actual.strip(),
                 repr(other),
@@ -290,7 +295,7 @@ class expect:
         """Same as ``startswith`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = (
                 "Given text:\n\n%s\n\nExpected to start with %s (ignoring case) but didn't"
                 % (self._actual.strip(), repr(other))
@@ -307,7 +312,7 @@ class expect:
         """Ensure that ``other`` ends the actual value."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = "Given text:\n\n%s\n\nExpected to end with %s but didn't" % (
                 self._actual.strip(),
                 repr(other),
@@ -324,7 +329,7 @@ class expect:
         """Same as ``endswith`` but ignoring case."""
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
 
-        if isinstance(self._actual, str) and '\n' in self._actual:
+        if isinstance(self._actual, str) and "\n" in self._actual:
             msg = (
                 "Given text:\n\n%s\n\nExpected to end with %s (ignoring case) but didn't"
                 % (self._actual.strip(), repr(other))
@@ -378,7 +383,7 @@ class _RaisesExpectation:
         success = not exc_type
         if success:
             raise AssertionError(
-                'Expected an exception of type %s but got none'
+                "Expected an exception of type %s but got none"
                 % self._exception_class.__name__
             )
         return self.validate_failure(exc_type, exc_value)
@@ -425,15 +430,15 @@ class _CustomExpectation:
     def enforce(self, *args, **kwargs):
         __tracebackhide__ = _hidetraceback()  # pylint: disable=unused-variable
         if not self._predicate(self._actual, *args, **kwargs):
-            predicate_name = self._predicate.__name__.replace('_', ' ')
+            predicate_name = self._predicate.__name__.replace("_", " ")
             raise AssertionError(
-                'Expected that %s %s, but %s'
+                "Expected that %s %s, but %s"
                 % (repr(self._actual), predicate_name, self._negative_verb())
             )
 
     def _negative_verb(self):
         # XXX: getting name in multiple places
-        first_word_in_predicate = self._predicate.__name__.split('_')[0]
+        first_word_in_predicate = self._predicate.__name__.split("_")[0]
         try:
             return self.negative_verbs[first_word_in_predicate]
         except KeyError:
@@ -477,10 +482,10 @@ def normalize(value):
 
 
 def normalized_diff(other, actual):
-    diff = difflib.unified_diff(other.splitlines(), actual.splitlines(), lineterm='')
+    diff = difflib.unified_diff(other.splitlines(), actual.splitlines(), lineterm="")
     diff = list(diff)  # type: ignore
-    return '\n'.join(['\nDiff:'] + diff[2:])  # type: ignore
+    return "\n".join(["\nDiff:"] + diff[2:])  # type: ignore
 
 
 def _hidetraceback():
-    return os.getenv('EXPECTER_HIDETRACEBACK')
+    return os.getenv("EXPECTER_HIDETRACEBACK")

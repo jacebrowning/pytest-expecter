@@ -1,4 +1,4 @@
-# pylint: disable=unused-variable,expression-not-assigned
+# pylint: disable=unused-variable,expression-not-assigned,comparison-of-constants
 
 import pytest
 
@@ -28,12 +28,12 @@ def describe_expect():
         assert fail_msg(_fails) == ("Expected condition to be False, but it was True")
 
     def it_can_expect_identity_with_none():
-        data = {'a': 1}
+        data = {"a": 1}
 
-        expect(data.get('b')).is_(None)
+        expect(data.get("b")).is_(None)
 
         def _fails():
-            expect(data.get('a')).is_(None)
+            expect(data.get("a")).is_(None)
 
         with pytest.raises(AssertionError):
             _fails()
@@ -60,12 +60,12 @@ def describe_expect():
         assert fail_msg(_fails) == ("Expected condition to not be False, but it was")
 
     def it_can_expect_nonidentity_with_None():
-        data = {'a': 1}
+        data = {"a": 1}
 
-        expect(data.get('a')).is_not(None)
+        expect(data.get("a")).is_not(None)
 
         def _fails():
-            expect(data.get('b')).is_not(None)
+            expect(data.get("b")).is_not(None)
 
         with pytest.raises(AssertionError):
             _fails()
