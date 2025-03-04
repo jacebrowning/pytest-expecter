@@ -52,9 +52,9 @@ pylint = "~2.15"
 types-setuptools = "*"
 
 # Testing
-pytest = "^6.2.5"
+pytest = "^8.3.5"
 pytest-cov = "*"
-pytest-describe = "^1.0"
+pytest-describe = "^2.2"
 pytest-random = "*"
 freezegun = "*"
 
@@ -62,14 +62,14 @@ freezegun = "*"
 coveragespace = "*"
 
 # Documentation
-mkdocs = "^1.2.3"
+mkdocs = "^1.6.1"
 pygments = "*"
 jinja2 = "~3.0.3"
 
 # Tooling
 pyinstaller = "*"
 sniffer = "*"
-MacFSEvents = { version = "*", platform = "darwin" }
+MacFSEvents = { version = "*", platform = "darwin", python = "<3.13" }
 pync = { version = "*", platform = "darwin" }
 
 [tool.poetry.requires-plugins]

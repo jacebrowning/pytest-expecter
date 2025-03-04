@@ -8,7 +8,7 @@ A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernh
 [![PyPI Version](https://img.shields.io/pypi/v/pytest-expecter.svg)](https://pypi.org/project/pytest-expecter)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pytest-expecter.svg?color=orange)](https://pypistats.org/packages/pytest-expecter)
 
-# Quick Start
+## Quick Start
 
 With this plugin you can write tests (optionally using [pytest-describe](https://github.com/pytest-dev/pytest-describe)) like this:
 
@@ -36,7 +36,7 @@ test_foobar.py:7: AssertionError
 ================ 1 failed, 1 passed in 2.67 seconds ================
 ```
 
-# Installation
+## Installation
 
 Install it directly into an activated virtual environment:
 

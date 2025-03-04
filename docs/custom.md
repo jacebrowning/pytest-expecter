@@ -1,4 +1,6 @@
-# Definition
+# Custom Checks
+
+## Definition
 
 To add additional expectation helpers, define a function that returns a boolean and register it:
 
@@ -11,7 +13,7 @@ def can_meow(actual_value):
 expecter.add_expectation(can_meow)
 ```
 
-# Usage
+## Usage
 
 Custom helpers are available on the `expect` object:
 

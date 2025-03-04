@@ -1,18 +1,20 @@
-# Equality
+# Builtin Checks
+
+## Equality
 
 ```python
 expect(42) == 42
 expect(42) != 0
 ```
 
-# Comparison
+## Comparison
 
 ```python
 expect(42) > 0
 expect(1.2) <= 1.23
 ```
 
-# Contents
+## Contents
 
 ```python
 expect("Hello, world!").contains("world")  # or 'includes'
@@ -21,7 +23,7 @@ expect("Hello, world!").icontains("hello")
 expect("Hello, world!").iexcludes("FOOBAR")
 ```
 
-# Strings
+## Strings
 
 ```python
 expect("Hello, world!").startswith("Hello")
@@ -30,13 +32,13 @@ expect("Hello, world!").istartswith("hello")
 expect("Hello, world!").iendswith("WORLD!")
 ```
 
-# Types
+## Types
 
 ```python
 expect(4.2).isinstance(float)
 ```
 
-# Identity
+## Identity
 
 ```python
 expect(value).is_(True)
@@ -47,7 +49,7 @@ expect(value).is_not(False)
 expect(value).is_not(None)
 ```
 
-# Exceptions
+## Exceptions
 
 ```python
 with expect.raises(ValueError):

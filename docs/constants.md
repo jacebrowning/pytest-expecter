@@ -1,4 +1,6 @@
-# Anything
+# Constants
+
+## Anything
 
 The `expect.anything` constant can be used ignore elements of a nested structure in equality comparisons:
 

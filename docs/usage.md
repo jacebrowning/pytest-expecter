@@ -1,4 +1,6 @@
-# Import
+# Basic Usage
+
+## Import
 
 The `expect` utility can be imported from the package:
 
@@ -9,7 +11,7 @@ def test_foobar():
     expect("foo") != "bar"
 ```
 
-# Fixture
+## Fixture
 
 The utility is also available as `pytest` fixture
 
