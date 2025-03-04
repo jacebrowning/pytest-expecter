@@ -20,7 +20,7 @@ def describe_expect():
             _expects_raise_but_doesnt_get_it()
 
         assert fail_msg(_expects_raise_but_doesnt_get_it) == (
-            'Expected an exception of type KeyError but got none'
+            "Expected an exception of type KeyError but got none"
         )
 
     def it_does_not_swallow_exceptions_of_the_wrong_type():
@@ -36,13 +36,13 @@ def describe_expect():
             raise ValueError
 
     def it_can_expect_failure_messages():
-        with expect.raises(ValueError, 'my message'):
-            raise ValueError('my message')
+        with expect.raises(ValueError, "my message"):
+            raise ValueError("my message")
 
     def it_can_require_failure_messages():
         def _fails():
-            with expect.raises(ValueError, 'my message'):
-                raise ValueError('wrong message')
+            with expect.raises(ValueError, "my message"):
+                raise ValueError("wrong message")
 
         with pytest.raises(AssertionError):
             _fails()

@@ -13,7 +13,7 @@ from . import expect as _expect
 
 
 def pytest_configure(config):  # pylint: disable=unused-argument
-    os.environ['EXPECTER_HIDETRACEBACK'] = "true"
+    os.environ["EXPECTER_HIDETRACEBACK"] = "true"
 
 
 @pytest.fixture
