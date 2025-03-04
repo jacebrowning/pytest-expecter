@@ -64,7 +64,7 @@ coveragespace = "*"
 # Documentation
 mkdocs = "^1.6.1"
 pygments = "*"
-jinja2 = "~3.0.3"
+jinja2 = ">=3.0.3,<3.2.0"
 
 # Tooling
 pyinstaller = "*"
