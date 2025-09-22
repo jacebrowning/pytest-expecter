@@ -48,7 +48,7 @@ isort = "^5.10"
 # Linters
 mypy = "*"
 pydocstyle = "*"
-pylint = "~2.15"
+pylint = ">=2.15,<3.4"
 types-setuptools = "*"
 
 # Testing
