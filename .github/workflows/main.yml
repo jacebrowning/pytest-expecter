@@ -19,6 +19,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - uses: Gr1N/setup-poetry@v8
+      with:
+        poetry-version: '2.4.1'
 
     - name: Check dependencies
       run: make doctor
