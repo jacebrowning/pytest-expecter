@@ -1,5 +1,10 @@
 # Release Notes
 
+## 3.1 (2025-06-13)
+
+- Dropped support for Python 3.9.
+- Added support for Python 3.14.
+
 ## 3.0 (2025-03-04)
 
 - Dropped support for Python 3.6 and 3.7.
