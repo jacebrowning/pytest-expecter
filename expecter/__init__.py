@@ -445,7 +445,7 @@ class _CustomExpectation:
             return "got False"
 
 
-_custom_expectations = {}
+_custom_expectations: dict[str, object] = {}
 
 
 def add_expectation(predicate):
