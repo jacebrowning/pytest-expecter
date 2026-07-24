@@ -1,6 +1,6 @@
 # Overview
 
-A `pytest` plugin based on [garybernhardt/expecter](https://github.com/garybernhardt/expecter) to write expressive tests.
+A `pytest` plugin to write more expressive tests using the familiar "expect" pattern.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/jacebrowning/pytest-expecter/main.yml)](https://github.com/jacebrowning/pytest-expecter/actions/workflows/main.yml)
 [![Coverage Status](https://img.shields.io/coveralls/jacebrowning/pytest-expecter/develop.svg)](https://coveralls.io/r/jacebrowning/pytest-expecter)
